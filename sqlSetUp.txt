@@ -1,0 +1,50 @@
+
+CREATE SCHEMA Task_Management;
+
+USE Task_Management;
+
+CREATE TABLE departments (
+department_id INT PRIMARY KEY,
+manager_id INT,
+name NVARCHAR(40)
+);
+
+CREATE TABLE employees 
+(
+employee_id INT PRIMARY KEY,
+first_name NVARCHAR(20) NOT NULL,
+last_name NVARCHAR(20) NOT NULL,
+department_id INT,
+FOREIGN KEY(department_id) REFERENCES departments(department_id),
+egn CHAR(10) NOT NULL,
+email NVARCHAR(50) NOT NULL,
+telephone CHAR(10)
+);
+
+ALTER TABLE Departments
+ADD FOREIGN KEY (manager_Id) REFERENCES employees (employee_id);
+
+CREATE TABLE status 
+(
+status_id INT PRIMARY KEY,
+name NVARCHAR(20)
+);
+
+CREATE TABLE tasks 
+(
+task_id INT PRIMARY KEY,
+name NVARCHAR(30) NOT NULL,
+description NVARCHAR(600),
+status INT NOT NULL, 
+department_id INT NOT NULL,
+requester_id INT NOT NULL,
+taker_id INT,
+FOREIGN KEY(status) REFERENCES status(status_id),
+FOREIGN KEY(department_id) REFERENCES departments(department_id),
+FOREIGN KEY(requester_id) REFERENCES employees(employee_id),
+FOREIGN KEY(taker_id) REFERENCES employees(employee_id),
+request_date DATETIME NOT NULL,
+date_taken DATETIME NOT NULL,
+time_estimate_hours INT,
+date_completed DATETIME,
+);
