@@ -1,16 +1,16 @@
-package data;
+package database.objects;
 
 public class Employee {
 
     private int employeeId;
     private String firstName;
     private String lastName;
-    private Department department;
+    private database.objects.Department department;
     private String egn;
     private String email;
     private String telephone;
 
-    public Employee(int employeeId, String firstName, String lastName, Department department, String egn, String email, String telephone) {
+    public Employee(int employeeId, String firstName, String lastName, database.objects.Department department, String egn, String email, String telephone) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,11 +40,11 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public Department getDepartment() {
+    public database.objects.Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(database.objects.Department department) {
         this.department = department;
     }
 

@@ -1,4 +1,4 @@
-package data;
+package database.objects;
 
 import java.util.Date;
 
@@ -9,15 +9,15 @@ public class Task {
     private String name;
     private String description;
     private String status;
-    private Department department;   //Maybe switch to reference?
-    private Employee requester;
-    private Employee taker;
+    private database.objects.Department department;   //Maybe switch to reference?
+    private database.objects.Employee requester;
+    private database.objects.Employee taker;
     private Date requestDate;
     private Date dateTaken;
     private int timeEstimateHours;
     private Date dateCompleted;
 
-    public Task(int taskId, String name, String description, String status, Department department, Employee requester, Employee taker, Date requestDate, Date dateTaken, int timeEstimateHours, Date dateCompleted) {
+    public Task(int taskId, String name, String description, String status, database.objects.Department department, database.objects.Employee requester, database.objects.Employee taker, Date requestDate, Date dateTaken, int timeEstimateHours, Date dateCompleted) {
         this.taskId = taskId;
         this.name = name;
         this.description = description;
@@ -59,27 +59,27 @@ public class Task {
         this.status = status;
     }
 
-    public Department getDepartment() {
+    public database.objects.Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(database.objects.Department department) {
         this.department = department;
     }
 
-    public Employee getRequester() {
+    public database.objects.Employee getRequester() {
         return requester;
     }
 
-    public void setRequester(Employee requester) {
+    public void setRequester(database.objects.Employee requester) {
         this.requester = requester;
     }
 
-    public Employee getTaker() {
+    public database.objects.Employee getTaker() {
         return taker;
     }
 
-    public void setTaker(Employee taker) {
+    public void setTaker(database.objects.Employee taker) {
         this.taker = taker;
     }
 

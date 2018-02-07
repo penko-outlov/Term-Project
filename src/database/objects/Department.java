@@ -1,13 +1,13 @@
-package data;
+package database.objects;
 
 
 public class Department {
 
     private int departmentId;
-    private Employee manager;
+    private database.objects.Employee manager;
     private String name;
 
-    public Department(int departmentId, Employee manager, String name) {
+    public Department(int departmentId, database.objects.Employee manager, String name) {
         this.departmentId = departmentId;
         this.manager = manager;
         this.name = name;
@@ -17,11 +17,11 @@ public class Department {
         return departmentId;
     }
 
-    public Employee getManager() {
+    public database.objects.Employee getManager() {
         return manager;
     }
 
-    public void setManager(Employee manager) {
+    public void setManager(database.objects.Employee manager) {
         this.manager = manager;
     }
 
