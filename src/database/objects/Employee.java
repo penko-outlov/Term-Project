@@ -4,20 +4,22 @@ public class Employee {
     private int employeeId;
     private String firstName;
     private String lastName;
-    private database.objects.Department department;
+    private int departmentId;
     private String egn;
     private String email;
     private String telephone;
 
-    public Employee(int employeeId, String firstName, String lastName, database.objects.Department department, String egn, String email, String telephone) {
+
+    public Employee(int employeeId, String firstName, String lastName, int departmentId, String egn, String email, String telephone) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.department = department;
+        this.departmentId = departmentId;
         this.egn = egn;
         this.email = email;
         this.telephone = telephone;
     }
+
 
     public int getEmployeeId() {
         return employeeId;
@@ -39,12 +41,12 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public database.objects.Department getDepartment() {
-        return department;
+    public int getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment(database.objects.Department department) {
-        this.department = department;
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 
     public String getEgn() {

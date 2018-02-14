@@ -61,16 +61,24 @@ public class DatabaseConnector {
     }
 
     public static void insertDepartment(Department department) {
+        insertDataEntry(department, DEPARTMENT_TABLE_NAME);
+    }
+
+    private  static  void insertDataEntry(Object data, String tableName) {
         connection = getConnection();
 
         try {
             Statement statement = connection.createStatement();
 
-            statement.executeUpdate("INSERT INTO " + SCHEMA_NAME + "." + DEPARTMENT_TABLE_NAME + " VALUES " + department);
+            statement.executeUpdate("INSERT INTO " + SCHEMA_NAME + "." + tableName + " VALUES " + data);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+
+    //TODO: Add insertion function for the other data entries and a universal insertion function that takes an object to avoid duplication
+    //TODO: Override ToString for task and department as well
 
 }
