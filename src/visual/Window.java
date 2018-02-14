@@ -1,5 +1,7 @@
 package visual;
 
+import database.DatabaseConnector;
+
 import javax.swing.JFrame;
 
 public class Window extends JFrame {
@@ -7,7 +9,7 @@ public class Window extends JFrame {
     public static final int WINDOW_HEIGHT = WINDOW_WIDTH / 4 * 3;
     public static final String NAME = "Task Management";
 
-    private TaskPanel testPanel = new TaskPanel(null);
+    private TaskPanel testModel = new TaskPanel(DatabaseConnector.getEmployeeModel());
 
     public Window() {
         setTitle(NAME);
@@ -17,6 +19,6 @@ public class Window extends JFrame {
         setVisible(true);
         setResizable(false);
 
-        add(testPanel);
+        add(testModel);
     }
 }
