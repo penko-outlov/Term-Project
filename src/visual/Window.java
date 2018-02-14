@@ -7,6 +7,8 @@ public class Window extends JFrame {
     public static final int WINDOW_HEIGHT = WINDOW_WIDTH / 4 * 3;
     public static final String NAME = "Task Management";
 
+    private TaskPanel testPanel = new TaskPanel(null);
+
     public Window() {
         setTitle(NAME);
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -14,5 +16,7 @@ public class Window extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+
+        add(testPanel);
     }
 }
