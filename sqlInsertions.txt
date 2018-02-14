@@ -1,0 +1,13 @@
+USE TASK_MANAGEMENT
+
+INSERT INTO DEPARTMENTS VALUES (1, NULL, 'Montreal');
+INSERT INTO DEPARTMENTS VALUES (2, NULL, 'Berlin');
+INSERT INTO DEPARTMENTS VALUES (3, NULL, 'London');
+
+INSERT INTO EMPLOYEES VALUES (1, 'Laurence', 'Spector', 1, '9999999999', 'PrimeSpector@gmail.com', '0884562315' );
+INSERT INTO EMPLOYEES VALUES (2, 'James', 'Smith', 1, '9999999999', 'SmithSmith@gmail.com', '0881262315' );
+INSERT INTO EMPLOYEES VALUES (3, 'John', 'Smith', 1, '9999999999', 'JSmithers@gmail.com', '0884536615' );
+INSERT INTO EMPLOYEES VALUES (4, 'David', 'Smith', 1, '9999999999', 'SmithinItUp@gmail.com', '0884565115' );
+INSERT INTO EMPLOYEES VALUES (5, 'Paul', 'McDouglas', 2, '9999999999', 'Daugas@gmail.com', '0882262315' );
+INSERT INTO EMPLOYEES VALUES (6, 'Nathan', 'Prince', 2, '9999999999', 'RoyalNate@gmail.com', '0881111315' );
+INSERT INTO EMPLOYEES VALUES (7, 'Dick', 'Johnson', 3, '9999999999', 'BigJohnson@gmail.com', '0884536185' );

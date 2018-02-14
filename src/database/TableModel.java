@@ -9,31 +9,42 @@ import java.util.ArrayList;
 
 public class TableModel extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
-    private ResultSet resultSet;
     private int rowCount;
     private int columnCount;
-    private ArrayList<Object> data = new ArrayList<Object>();
+    private Object[][] data;
+    private String[] columnNames;
 
     public TableModel(ResultSet resultSet) {
-        this.resultSet = resultSet;
         try {
-            initializeData();
+            initializeData(resultSet);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void initializeData() throws Exception {
+    private void initializeData(ResultSet resultSet) throws Exception {
+        columnCount = resultSet.getMetaData().getColumnCount();
+
+        ArrayList<Object> tempData = new ArrayList<Object>();
         while (resultSet.next()) {
             Object[] row = new Object[columnCount];
             for (int j = 0; j < columnCount; j++) {
                 row[j] = resultSet.getObject(j + 1);
             }
-            data.add(row);
+            tempData.add(row);
         }
 
-        rowCount = data.size();
-        columnCount = resultSet.getMetaData().getColumnCount();
+        rowCount = tempData.size();
+
+        data = new Object[rowCount][];
+        for(int i = 0; i < rowCount; i++) {
+            data[i] = (Object[]) tempData.get(i);
+        }
+
+        columnNames = new String[columnCount];
+        for (int i = 0; i < columnNames.length; i++) {
+            columnNames[i] = resultSet.getMetaData().getColumnName(i + 1);
+        }
     }
 
     @Override
@@ -48,18 +59,12 @@ public class TableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Object[] row = (Object[]) data.get(rowIndex);
-        return row[columnIndex];
+        return data[rowIndex][columnIndex];
     }
 
     @Override
     public String getColumnName(int columnIndex) {
-        try {
-            ResultSetMetaData metaData = resultSet.getMetaData();
-            return metaData.getColumnName(columnIndex + 1);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        return columnNames[columnIndex];
     }
+
 }
