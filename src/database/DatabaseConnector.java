@@ -35,7 +35,7 @@ public class DatabaseConnector {
 
     private static TableModel getTableModel(String tableName) {
         connection = getConnection();
-        String sql = "select * from " + tableName + ";";
+        String sql = "select * from task_management." + tableName + ";";
         ResultSet result = null;
         TableModel model = null;
 
