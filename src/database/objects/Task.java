@@ -3,7 +3,6 @@ package database.objects;
 import java.util.Date;
 
 public class Task {
-
     private int taskId;
 
     private String name;

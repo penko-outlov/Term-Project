@@ -8,7 +8,6 @@ import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 
 public class TableModel extends AbstractTableModel {
-
     private static final long serialVersionUID = 1L;
     private ResultSet resultSet;
     private int rowCount;
@@ -25,7 +24,6 @@ public class TableModel extends AbstractTableModel {
     }
 
     private void initializeData() throws Exception {
-
         while (resultSet.next()) {
             Object[] row = new Object[columnCount];
             for (int j = 0; j < columnCount; j++) {

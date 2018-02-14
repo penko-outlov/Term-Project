@@ -2,7 +2,6 @@ package database.objects;
 
 
 public class Department {
-
     private int departmentId;
     private database.objects.Employee manager;
     private String name;
