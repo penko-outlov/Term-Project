@@ -1,5 +1,8 @@
 package database;
 
+import database.objects.Department;
+
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,6 +11,11 @@ import java.sql.SQLException;
 
 public class DatabaseConnector {
     static Connection connection = null;
+
+    private static final String SCHEMA_NAME = "task_management";
+    private static final String TASK_TABLE_NAME = "tasks";
+    private static final String DEPARTMENT_TABLE_NAME = "departments";
+    private static final String EMPLOYEE_TABLE_NAME = "employees";
 
     public static Connection getConnection() {
         try {
@@ -22,15 +30,15 @@ public class DatabaseConnector {
     }
 
     public static TableModel getTaskModel() {
-        return getTableModel("tasks");
+        return getTableModel(TASK_TABLE_NAME);
     }
 
     public static TableModel getDepartmentModel() {
-        return getTableModel("departments");
+        return getTableModel(DEPARTMENT_TABLE_NAME);
     }
 
     public static TableModel getEmployeeModel() {
-        return getTableModel("employees");
+        return getTableModel(EMPLOYEE_TABLE_NAME);
     }
 
     private static TableModel getTableModel(String tableName) {
@@ -51,4 +59,18 @@ public class DatabaseConnector {
 
         return model;
     }
+
+    public static void insertDepartment(Department department) {
+        connection = getConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate("INSERT INTO " + SCHEMA_NAME + "." + DEPARTMENT_TABLE_NAME + " VALUES " + department);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
