@@ -20,7 +20,7 @@ public class DatabaseConnector {
     public static Connection getConnection() {
         try {
             Class.forName("org.h2.Driver");
-            connection = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "Angelord", "");
+            connection = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test2", "JohnSmith", "");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
