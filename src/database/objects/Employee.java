@@ -1,7 +1,8 @@
 package database.objects;
 
+import utility.StringUtility;
+
 public class Employee {
-    private int employeeId;
     private String firstName;
     private String lastName;
     private int departmentId;
@@ -9,20 +10,15 @@ public class Employee {
     private String email;
     private String telephone;
 
+    private static final String COLUMN_NAMES = "(FIRST_NAME, LAST_NAME, DEPARTMENT_ID, EGN, EMAIL, TELEPHONE)";
 
-    public Employee(int employeeId, String firstName, String lastName, int departmentId, String egn, String email, String telephone) {
-        this.employeeId = employeeId;
+    public Employee(String firstName, String lastName, int departmentId, String egn, String email, String telephone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.departmentId = departmentId;
         this.egn = egn;
         this.email = email;
         this.telephone = telephone;
-    }
-
-
-    public int getEmployeeId() {
-        return employeeId;
     }
 
     public String getFirstName() {
@@ -71,6 +67,11 @@ public class Employee {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    @Override
+    public String toString() {
+        return COLUMN_NAMES + " VALUES " + StringUtility.CreateParenthesizedList(firstName, lastName, departmentId, egn, email, telephone);
     }
 }
 

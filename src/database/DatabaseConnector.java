@@ -1,6 +1,7 @@
 package database;
 
 import database.objects.Department;
+import database.objects.Employee;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -64,21 +65,23 @@ public class DatabaseConnector {
         insertDataEntry(department, DEPARTMENT_TABLE_NAME);
     }
 
+    public static  void insertEmployee(Employee employee) {
+        insertDataEntry(employee, EMPLOYEE_TABLE_NAME);
+    }
+
     private  static  void insertDataEntry(Object data, String tableName) {
         connection = getConnection();
 
         try {
             Statement statement = connection.createStatement();
 
-            statement.executeUpdate("INSERT INTO " + SCHEMA_NAME + "." + tableName + " VALUES " + data);
+            statement.executeUpdate("INSERT INTO " + SCHEMA_NAME + "." + tableName + " " + data);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-
-    //TODO: Add insertion function for the other data entries and a universal insertion function that takes an object to avoid duplication
-    //TODO: Override ToString for task and department as well
+    //TODO: Override ToString for Task
 
 }

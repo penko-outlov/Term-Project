@@ -1,19 +1,17 @@
 package database.objects;
 
 
+import utility.StringUtility;
+
 public class Department {
-    private int departmentId;
     private int managerId;
     private String name;
 
-    public Department(int departmentId, int managerId, String name) {
-        this.departmentId = departmentId;
+    private static final String COLUMN_NAMES = "(MANAGER_ID, NAME)";
+
+    public Department(int managerId, String name) {
         this.managerId = managerId;
         this.name = name;
-    }
-
-    public int getDepartmentId() {
-        return departmentId;
     }
 
     public int getManagerId() {
@@ -34,6 +32,6 @@ public class Department {
 
     @Override
     public String toString() {
-        return "(" + departmentId + ", " + managerId + ", " + "'" + name + "');";
+        return COLUMN_NAMES + " VALUES " + StringUtility.CreateParenthesizedList(managerId, name);
     }
 }

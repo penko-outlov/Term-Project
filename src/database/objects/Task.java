@@ -16,8 +16,7 @@ public class Task {
     private int timeEstimateHours;
     private Date dateCompleted;
 
-    public Task(int taskId, String name, String description, String status, database.objects.Department department, database.objects.Employee requester, database.objects.Employee taker, Date requestDate, Date dateTaken, int timeEstimateHours, Date dateCompleted) {
-        this.taskId = taskId;
+    public Task(String name, String description, String status, database.objects.Department department, database.objects.Employee requester, database.objects.Employee taker, Date requestDate, Date dateTaken, int timeEstimateHours, Date dateCompleted) {
         this.name = name;
         this.description = description;
         this.status = status;
@@ -28,10 +27,6 @@ public class Task {
         this.dateTaken = dateTaken;
         this.timeEstimateHours = timeEstimateHours;
         this.dateCompleted = dateCompleted;
-    }
-
-    public int getTaskId() {
-        return taskId;
     }
 
     public String getName() {

@@ -3,6 +3,8 @@ package visual;
 import database.DatabaseConnector;
 import database.TableModel;
 import database.objects.Department;
+import database.objects.Employee;
+import utility.StringUtility;
 
 import javax.swing.SwingUtilities;
 import java.sql.Connection;
@@ -17,8 +19,7 @@ public class Main {
             return;
         }
 
-        DatabaseConnector.insertDepartment(new Department(4, 1, "Moscow"));
-
+        //DatabaseConnector.insertDepartment(new Department( 4, "New York"));
         TableModel depTable = DatabaseConnector.getDepartmentModel();
         System.out.println(depTable.getValueAt(3, 2));
 
