@@ -2,6 +2,8 @@ package database;
 
 import database.objects.Department;
 import database.objects.Employee;
+import database.objects.TableEntry;
+import database.objects.Task;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -13,10 +15,7 @@ import java.sql.SQLException;
 public class DatabaseConnector {
     static Connection connection = null;
 
-    private static final String SCHEMA_NAME = "task_management";
-    private static final String TASK_TABLE_NAME = "tasks";
-    private static final String DEPARTMENT_TABLE_NAME = "departments";
-    private static final String EMPLOYEE_TABLE_NAME = "employees";
+    public static final String SCHEMA_NAME = "task_management";
 
     public static Connection getConnection() {
         try {
@@ -31,15 +30,15 @@ public class DatabaseConnector {
     }
 
     public static TableModel getTaskModel() {
-        return getTableModel(TASK_TABLE_NAME);
+        return getTableModel(Task.TABLE_NAME);
     }
 
     public static TableModel getDepartmentModel() {
-        return getTableModel(DEPARTMENT_TABLE_NAME);
+        return getTableModel(Department.TABLE_NAME);
     }
 
     public static TableModel getEmployeeModel() {
-        return getTableModel(EMPLOYEE_TABLE_NAME);
+        return getTableModel(Employee.TABLE_NAME);
     }
 
     private static TableModel getTableModel(String tableName) {
@@ -61,27 +60,18 @@ public class DatabaseConnector {
         return model;
     }
 
-    public static void insertDepartment(Department department) {
-        insertDataEntry(department, DEPARTMENT_TABLE_NAME);
-    }
-
-    public static  void insertEmployee(Employee employee) {
-        insertDataEntry(employee, EMPLOYEE_TABLE_NAME);
-    }
-
-    private  static  void insertDataEntry(Object data, String tableName) {
+    public static void insertDataEntry(TableEntry entry) {
         connection = getConnection();
 
         try {
-            Statement statement = connection.createStatement();
-
-            statement.executeUpdate("INSERT INTO " + SCHEMA_NAME + "." + tableName + " " + data);
-
+            PreparedStatement prepStatement = entry.generateInsertStatement(connection, SCHEMA_NAME);
+            prepStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    //TODO: Make sure we don't look for the connection every single time we want to work with the database (Check connection frequency?)
     //TODO: Override ToString for Task
 
 }

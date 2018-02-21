@@ -1,32 +1,68 @@
 package database.objects;
 
-import java.util.Date;
+import utility.StringUtility;
 
-public class Task {
-    private int taskId;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+
+public class Task extends TableEntry {
+
+    public static final String TABLE_NAME = "tasks";
 
     private String name;
     private String description;
-    private String status;
-    private database.objects.Department department;   //Maybe switch to reference?
-    private database.objects.Employee requester;
-    private database.objects.Employee taker;
-    private Date requestDate;
-    private Date dateTaken;
+    private int statusId;
+    private int departmentId;   //Maybe switch to reference?
+    private int requesterId;
+    private int takerId;
+    private LocalDateTime requestDate;
+    private LocalDateTime dateTaken;
     private int timeEstimateHours;
-    private Date dateCompleted;
+    private LocalDateTime dateCompleted;
 
-    public Task(String name, String description, String status, database.objects.Department department, database.objects.Employee requester, database.objects.Employee taker, Date requestDate, Date dateTaken, int timeEstimateHours, Date dateCompleted) {
+    private static final String COLUMN_NAMES = "(NAME, DESCRIPTION, STATUS, DEPARTMENT_ID, REQUESTED_ID, TAKER_ID, REQUEST_DATE, DATE_TAKEN, TIME_ESTIMATED_HOURS, DATE_COMPLETED)";
+
+    public Task(String name, String description, int statusId, int departmentId, int requesterId, int takerId, LocalDateTime requestDate, LocalDateTime dateTaken, int timeEstimateHours, LocalDateTime dateCompleted) {
         this.name = name;
         this.description = description;
-        this.status = status;
-        this.department = department;
-        this.requester = requester;
-        this.taker = taker;
+        this.statusId = statusId;
+        this.departmentId = departmentId;
+        this.requesterId = requesterId;
+        this.takerId = takerId;
         this.requestDate = requestDate;
         this.dateTaken = dateTaken;
         this.timeEstimateHours = timeEstimateHours;
         this.dateCompleted = dateCompleted;
+    }
+
+    @Override
+    public PreparedStatement generateInsertStatement(Connection databaseConnection, String schemaName) {
+        String query = "INSERT INTO " + schemaName + "." + TABLE_NAME + " " + COLUMN_NAMES + " VALUES " + StringUtility.CreateQueryParenthesizedList(10);
+
+        PreparedStatement statement = null;
+        try {
+            statement = databaseConnection.prepareStatement(query);
+            statement.setString(1, name);
+            statement.setString(2, description);
+            statement.setInt(3, statusId);
+            statement.setInt(4, departmentId);
+            statement.setInt(5, requesterId);
+            statement.setInt(6, takerId);
+            statement.setDate(7, java.sql.Date.valueOf(requestDate.toLocalDate()));
+            statement.setDate(8, java.sql.Date.valueOf(dateTaken.toLocalDate()));
+            statement.setInt(9, timeEstimateHours);
+            statement.setDate(10, java.sql.Date.valueOf(dateCompleted.toLocalDate()));
+        } catch (SQLException e) {
+            System.out.println("Failed to generate prepared statement!");
+            e.printStackTrace();
+        }
+        return  statement;
+    }
+
+    public static String getTableName() {
+        return TABLE_NAME;
     }
 
     public String getName() {
@@ -45,51 +81,51 @@ public class Task {
         this.description = description;
     }
 
-    public String getStatus() {
-        return status;
+    public int getStatusId() {
+        return statusId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
     }
 
-    public database.objects.Department getDepartment() {
-        return department;
+    public int getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment(database.objects.Department department) {
-        this.department = department;
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 
-    public database.objects.Employee getRequester() {
-        return requester;
+    public int getRequesterId() {
+        return requesterId;
     }
 
-    public void setRequester(database.objects.Employee requester) {
-        this.requester = requester;
+    public void setRequesterId(int requesterId) {
+        this.requesterId = requesterId;
     }
 
-    public database.objects.Employee getTaker() {
-        return taker;
+    public int getTakerId() {
+        return takerId;
     }
 
-    public void setTaker(database.objects.Employee taker) {
-        this.taker = taker;
+    public void setTakerId(int takerId) {
+        this.takerId = takerId;
     }
 
-    public Date getRequestDate() {
+    public LocalDateTime getRequestDate() {
         return requestDate;
     }
 
-    public void setRequestDate(Date requestDate) {
+    public void setRequestDate(LocalDateTime requestDate) {
         this.requestDate = requestDate;
     }
 
-    public Date getDateTaken() {
+    public LocalDateTime getDateTaken() {
         return dateTaken;
     }
 
-    public void setDateTaken(Date dateTaken) {
+    public void setDateTaken(LocalDateTime dateTaken) {
         this.dateTaken = dateTaken;
     }
 
@@ -101,13 +137,18 @@ public class Task {
         this.timeEstimateHours = timeEstimateHours;
     }
 
-    public Date getDateCompleted() {
+    public LocalDateTime getDateCompleted() {
         return dateCompleted;
     }
 
-    public void setDateCompleted(Date dateCompleted) {
+    public void setDateCompleted(LocalDateTime dateCompleted) {
         this.dateCompleted = dateCompleted;
     }
+
+    public static String getColumnNames() {
+        return COLUMN_NAMES;
+    }
+
 }
 
 
