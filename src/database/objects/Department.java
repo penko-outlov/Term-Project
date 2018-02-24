@@ -1,10 +1,6 @@
 package database.objects;
 
 
-import database.DatabaseConnector;
-import utility.StringUtility;
-
-import javax.xml.validation.Schema;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -13,12 +9,11 @@ public class Department extends TableEntry {
 
     public static final String ID_COLUMN_NAME = "DEPARTMENT_ID";
     public static final String TABLE_NAME = "departments";
+    private static final String COLUMN_NAMES = "(MANAGER_ID, NAME)";
+    private static final String INSERT_QUERY = TableEntry.generateInsertStatement(TABLE_NAME, COLUMN_NAMES, 2);
 
     private int managerId;
     private String name;
-
-    private static final String COLUMN_NAMES = "(MANAGER_ID, NAME)";
-    private static final String INSERT_STATEMENT = "INSERT INTO " + TABLE_NAME + " " + COLUMN_NAMES + " VALUES " + StringUtility.CreateQueryParenthesizedList(2);
 
     public Department(int managerId, String name) {
         this.managerId = managerId;
@@ -26,18 +21,14 @@ public class Department extends TableEntry {
     }
 
     @Override
-    public PreparedStatement generateInsertStatement(Connection databaseConnection) {
-        String query = "INSERT INTO " + TABLE_NAME + " " + COLUMN_NAMES + " VALUES " + StringUtility.CreateQueryParenthesizedList(2);
+    protected String getInsertQuery() {
+        return INSERT_QUERY;
+    }
 
-        PreparedStatement statement = null;
-        try {
-            statement = databaseConnection.prepareStatement(query);
-            setStatementValues(statement);
-        } catch (SQLException e) {
-            System.out.println("Failed to generate prepared statement!");
-            e.printStackTrace();
-        }
-        return  statement;
+    @Override
+    protected void setStatementValues(PreparedStatement statement) throws SQLException {
+        statement.setInt(1, managerId);
+        statement.setString(2, name);
     }
 
     /*
@@ -57,10 +48,7 @@ public class Department extends TableEntry {
     }
     */
 
-    private void setStatementValues(PreparedStatement statement) throws SQLException {
-        statement.setInt(1, managerId);
-        statement.setString(2, name);
-    }
+
 
 
 

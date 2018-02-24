@@ -1,7 +1,5 @@
 package database.objects;
 
-import utility.StringUtility;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -11,6 +9,8 @@ public class Task extends TableEntry {
 
     public static final String ID_COLUMN_NAME = "TASK_ID";
     public static final String TABLE_NAME = "tasks";
+    private static final String COLUMN_NAMES = "(NAME, DESCRIPTION, STATUS, DEPARTMENT_ID, REQUESTED_ID, TAKER_ID, REQUEST_DATE, DATE_TAKEN, TIME_ESTIMATED_HOURS, DATE_COMPLETED)";
+    private static final String INSERT_QUERY = TableEntry.generateInsertStatement(TABLE_NAME, COLUMN_NAMES, 10);
 
     private String name;
     private String description;
@@ -23,7 +23,6 @@ public class Task extends TableEntry {
     private int timeEstimateHours;
     private LocalDateTime dateCompleted;
 
-    private static final String COLUMN_NAMES = "(NAME, DESCRIPTION, STATUS, DEPARTMENT_ID, REQUESTED_ID, TAKER_ID, REQUEST_DATE, DATE_TAKEN, TIME_ESTIMATED_HOURS, DATE_COMPLETED)";
 
     public Task(String name, String description, int statusId, int departmentId, int requesterId, int takerId, LocalDateTime requestDate, LocalDateTime dateTaken, int timeEstimateHours, LocalDateTime dateCompleted) {
         this.name = name;
@@ -39,27 +38,22 @@ public class Task extends TableEntry {
     }
 
     @Override
-    public PreparedStatement generateInsertStatement(Connection databaseConnection) {
-        String query = "INSERT INTO " + TABLE_NAME + " " + COLUMN_NAMES + " VALUES " + StringUtility.CreateQueryParenthesizedList(10);
+    protected String getInsertQuery() {
+        return INSERT_QUERY;
+    }
 
-        PreparedStatement statement = null;
-        try {
-            statement = databaseConnection.prepareStatement(query);
-            statement.setString(1, name);
-            statement.setString(2, description);
-            statement.setInt(3, statusId);
-            statement.setInt(4, departmentId);
-            statement.setInt(5, requesterId);
-            statement.setInt(6, takerId);
-            statement.setDate(7, java.sql.Date.valueOf(requestDate.toLocalDate()));
-            statement.setDate(8, java.sql.Date.valueOf(dateTaken.toLocalDate()));
-            statement.setInt(9, timeEstimateHours);
-            statement.setDate(10, java.sql.Date.valueOf(dateCompleted.toLocalDate()));
-        } catch (SQLException e) {
-            System.out.println("Failed to generate prepared statement!");
-            e.printStackTrace();
-        }
-        return  statement;
+    @Override
+    protected void setStatementValues(PreparedStatement statement) throws SQLException {
+        statement.setString(1, name);
+        statement.setString(2, description);
+        statement.setInt(3, statusId);
+        statement.setInt(4, departmentId);
+        statement.setInt(5, requesterId);
+        statement.setInt(6, takerId);
+        statement.setDate(7, java.sql.Date.valueOf(requestDate.toLocalDate()));
+        statement.setDate(8, java.sql.Date.valueOf(dateTaken.toLocalDate()));
+        statement.setInt(9, timeEstimateHours);
+        statement.setDate(10, java.sql.Date.valueOf(dateCompleted.toLocalDate()));
     }
 }
 

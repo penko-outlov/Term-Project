@@ -97,6 +97,4 @@ public class DatabaseConnector {
     }
     */
 
-    //TODO: Make sure we don't look for the connection every single time we want to work with the database (Check connection frequency?)
-
 }
