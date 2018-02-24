@@ -5,5 +5,7 @@ import java.sql.PreparedStatement;
 
 public abstract class TableEntry {
 
-    public abstract PreparedStatement generateInsertStatement(Connection databaseConnection, String schemaName);
+    public abstract PreparedStatement generateInsertStatement(Connection databaseConnection);
+
+    //public abstract PreparedStatement generateUpdateStatement(Connection databaseConnection, String schemaName, int id);
 }

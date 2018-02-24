@@ -27,9 +27,7 @@ public class Main {
             return;
         }
 
-        //DatabaseConnector.insertDepartment(new Department( 4, "New York"));
         TableModel depTable = DatabaseConnector.getDepartmentModel();
-        System.out.println(depTable.getValueAt(3, 2));
 
         SwingUtilities.invokeLater(() -> {
             new Window();

@@ -31,8 +31,8 @@ public class Employee extends TableEntry {
     }
 
     @Override
-    public PreparedStatement generateInsertStatement(Connection databaseConnection, String schemaName) {
-        String query = "INSERT INTO " + schemaName + "." + TABLE_NAME + " " + COLUMN_NAMES + " VALUES " + StringUtility.CreateQueryParenthesizedList(6);
+    public PreparedStatement generateInsertStatement(Connection databaseConnection) {
+        String query = "INSERT INTO " + TABLE_NAME + " " + COLUMN_NAMES + " VALUES " + StringUtility.CreateQueryParenthesizedList(6);
 
         PreparedStatement statement = null;
         try {

@@ -39,8 +39,8 @@ public class Task extends TableEntry {
     }
 
     @Override
-    public PreparedStatement generateInsertStatement(Connection databaseConnection, String schemaName) {
-        String query = "INSERT INTO " + schemaName + "." + TABLE_NAME + " " + COLUMN_NAMES + " VALUES " + StringUtility.CreateQueryParenthesizedList(10);
+    public PreparedStatement generateInsertStatement(Connection databaseConnection) {
+        String query = "INSERT INTO " + TABLE_NAME + " " + COLUMN_NAMES + " VALUES " + StringUtility.CreateQueryParenthesizedList(10);
 
         PreparedStatement statement = null;
         try {
