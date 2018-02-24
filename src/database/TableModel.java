@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class TableModel extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
+    private String tableName;
     private int rowCount;
     private int columnCount;
     private Object[][] data;
@@ -45,6 +46,13 @@ public class TableModel extends AbstractTableModel {
         for (int i = 0; i < columnNames.length; i++) {
             columnNames[i] = resultSet.getMetaData().getColumnName(i + 1);
         }
+
+        tableName = resultSet.getMetaData().getTableName(1);
+    }
+
+
+    public String getTableName() {
+        return  tableName;
     }
 
     @Override

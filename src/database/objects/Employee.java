@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 public class Employee extends TableEntry {
 
+    public static final String ID_COLUMN_NAME = "EMPLOYEE_ID";
     public static final String TABLE_NAME = "employees";
 
     private String firstName;

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 public class Department extends TableEntry {
 
+    public static final String ID_COLUMN_NAME = "DEPARTMENT_ID";
     public static final String TABLE_NAME = "departments";
 
     private int managerId;

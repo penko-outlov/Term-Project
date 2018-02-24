@@ -4,6 +4,7 @@ import database.DatabaseConnector;
 import database.TableModel;
 import database.objects.Department;
 import database.objects.Employee;
+import org.h2.engine.Database;
 import utility.StringUtility;
 
 import javax.swing.SwingUtilities;
@@ -14,6 +15,10 @@ public class Main {
 
         //DatabaseConnector.insertDataEntry(new Department(4, "Paris"));
         //DatabaseConnector.insertDataEntry(new Employee("Georgi", "Georgiev", 3, "0000000000", "IvaneIvane@gmail.com", "0888888888"));
+
+        //DatabaseConnector.deleteEmployee(11);
+
+
 
         Connection connection = DatabaseConnector.getConnection();
 
@@ -29,5 +34,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             new Window();
         });
+
+
     }
 }

@@ -9,12 +9,13 @@ import java.time.LocalDateTime;
 
 public class Task extends TableEntry {
 
+    public static final String ID_COLUMN_NAME = "TASK_ID";
     public static final String TABLE_NAME = "tasks";
 
     private String name;
     private String description;
     private int statusId;
-    private int departmentId;   //Maybe switch to reference?
+    private int departmentId;
     private int requesterId;
     private int takerId;
     private LocalDateTime requestDate;

@@ -69,9 +69,30 @@ public class DatabaseConnector {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }   //TODO : Rename to insert row
+
+    public static void deleteTask(int id) { deleteRow(Task.TABLE_NAME, Task.ID_COLUMN_NAME, id);}
+
+    public  static void deleteDepartment(int id) { deleteRow(Department.TABLE_NAME, Department.ID_COLUMN_NAME, id);}
+
+    public static void deleteEmployee(int id) { deleteRow(Employee.TABLE_NAME, Employee.ID_COLUMN_NAME, id);}
+
+    private static void deleteRow(String tableName, String idColumnName,  int id) {
+        String sql = "DELETE FROM " + SCHEMA_NAME + "." + tableName + " WHERE " + idColumnName + " = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
+
     //TODO: Make sure we don't look for the connection every single time we want to work with the database (Check connection frequency?)
-    //TODO: Override ToString for Task
 
 }
