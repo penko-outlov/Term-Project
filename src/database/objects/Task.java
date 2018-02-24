@@ -1,6 +1,5 @@
 package database.objects;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -9,8 +8,9 @@ public class Task extends TableEntry {
 
     public static final String ID_COLUMN_NAME = "TASK_ID";
     public static final String TABLE_NAME = "tasks";
-    private static final String COLUMN_NAMES = "(NAME, DESCRIPTION, STATUS, DEPARTMENT_ID, REQUESTED_ID, TAKER_ID, REQUEST_DATE, DATE_TAKEN, TIME_ESTIMATED_HOURS, DATE_COMPLETED)";
-    private static final String INSERT_QUERY = TableEntry.generateInsertStatement(TABLE_NAME, COLUMN_NAMES, 10);
+    private static final String[] COLUMN_NAMES = { "NAME", "DESCRIPTION", "STATUS", "DEPARTMENT_ID", "REQUESTED_ID", "TAKER_ID", "REQUEST_DATE", "DATE_TAKEN", "TIME_ESTIMATED_HOURS", "DATE_COMPLETED"};
+    private static final String INSERT_QUERY = TableEntry.generateInsertQuery(TABLE_NAME, COLUMN_NAMES);
+    private static final String UPDATE_QUERY = TableEntry.generateUpdateQuery(TABLE_NAME, ID_COLUMN_NAME, COLUMN_NAMES);
 
     private String name;
     private String description;
@@ -40,6 +40,16 @@ public class Task extends TableEntry {
     @Override
     protected String getInsertQuery() {
         return INSERT_QUERY;
+    }
+
+    @Override
+    protected String getUpdateQuery() {
+        return UPDATE_QUERY;
+    }
+
+    @Override
+    protected int getColumnCount() {
+        return COLUMN_NAMES.length;
     }
 
     @Override

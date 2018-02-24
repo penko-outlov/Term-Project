@@ -8,8 +8,16 @@ import java.sql.SQLException;
 
 public abstract class TableEntry {
 
-    public static String generateInsertStatement(String tableName, String columnNames, int numColumns) {
-        return "INSERT INTO " + tableName + " " + columnNames + " VALUES " + StringUtility.CreateQueryParenthesizedList(numColumns);
+    protected static String generateInsertQuery(String tableName, String[] columnNames) {
+        return "INSERT INTO " + tableName + " " + StringUtility.CreateParenthesizedList(columnNames) + " VALUES " + StringUtility.createQuestionMarkParenthesizedList(columnNames.length);
+    }
+
+    protected static String generateUpdateQuery(String tableName, String idColumnName, String[] columnNames) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("UPDATE "); builder.append(tableName);
+        builder.append(" SET " ); builder.append(StringUtility.createSqlStatementColumnList(columnNames));
+        builder.append(" WHERE "); builder.append(idColumnName); builder.append(" = ? ");
+        return builder.toString();
     }
 
     public final PreparedStatement generateInsertStatement(Connection databaseConnection) {
@@ -26,7 +34,26 @@ public abstract class TableEntry {
 
     protected abstract String getInsertQuery();
 
+    public  final PreparedStatement generateUpdateStatement(Connection databaseConnection, int id) {
+        PreparedStatement statement = null;
+        try {
+            statement = databaseConnection.prepareStatement(getUpdateQuery());
+            setStatementValues(statement);
+            statement.setInt(getColumnCount() + 1, id);
+        } catch (SQLException e) {
+            System.out.println("Failed to generate prepared statement!");
+            e.printStackTrace();
+        }
+        return  statement;
+    }
+
+    protected abstract String getUpdateQuery();
+
+    protected abstract int getColumnCount();
+
     protected abstract void setStatementValues(PreparedStatement statement) throws SQLException;
 
-    //public abstract PreparedStatement generateUpdateStatement(Connection databaseConnection, String schemaName, int id);
+
+
+    //public abstract PreparedStatement generateUpdateQuery(Connection databaseConnection, String schemaName, int id);
 }

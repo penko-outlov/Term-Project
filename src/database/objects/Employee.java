@@ -1,6 +1,5 @@
 package database.objects;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -8,8 +7,9 @@ public class Employee extends TableEntry {
 
     public static final String ID_COLUMN_NAME = "EMPLOYEE_ID";
     public static final String TABLE_NAME = "employees";
-    private static final String COLUMN_NAMES = "(FIRST_NAME, LAST_NAME, DEPARTMENT_ID, EGN, EMAIL, TELEPHONE)";
-    private static final String INSERT_QUERY = TableEntry.generateInsertStatement(TABLE_NAME, COLUMN_NAMES, 6);
+    private static final String[] COLUMN_NAMES = { "FIRST_NAME", "LAST_NAME", "DEPARTMENT_ID", "EGN", "EMAIL", "TELEPHONE"};
+    private static final String INSERT_QUERY = TableEntry.generateInsertQuery(TABLE_NAME, COLUMN_NAMES);
+    private static final String UPDATE_QUERY = TableEntry.generateUpdateQuery(TABLE_NAME, ID_COLUMN_NAME, COLUMN_NAMES);
 
     private String firstName;
     private String lastName;
@@ -30,6 +30,16 @@ public class Employee extends TableEntry {
     @Override
     protected String getInsertQuery() {
         return INSERT_QUERY;
+    }
+
+    @Override
+    protected String getUpdateQuery() {
+        return UPDATE_QUERY;
+    }
+
+    @Override
+    protected int getColumnCount() {
+        return COLUMN_NAMES.length;
     }
 
     @Override

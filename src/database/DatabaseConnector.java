@@ -91,10 +91,15 @@ public class DatabaseConnector {
         }
     }
 
-    /*
     public static void updateRow(int id, TableEntry entry) {
+        connection = getConnection();
 
+        try {
+            PreparedStatement prepStatement = entry.generateUpdateStatement(connection, id);
+            prepStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    */
 
 }
