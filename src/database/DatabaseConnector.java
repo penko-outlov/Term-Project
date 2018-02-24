@@ -60,7 +60,7 @@ public class DatabaseConnector {
         return model;
     }
 
-    public static void insertDataEntry(TableEntry entry) {
+    public static void insertRow(TableEntry entry) {
         connection = getConnection();
 
         try {

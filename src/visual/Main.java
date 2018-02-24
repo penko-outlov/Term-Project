@@ -13,8 +13,8 @@ import java.sql.Connection;
 public class Main {
     public static void main(String[] args) {
 
-        //DatabaseConnector.insertDataEntry(new Department(4, "Paris"));
-        //DatabaseConnector.insertDataEntry(new Employee("Georgi", "Georgiev", 3, "0000000000", "IvaneIvane@gmail.com", "0888888888"));
+        //DatabaseConnector.insertRow(new Department(4, "Paris"));
+        //DatabaseConnector.insertRow(new Employee("Georgi", "Georgiev", 3, "0000000000", "IvaneIvane@gmail.com", "0888888888"));
 
         //DatabaseConnector.deleteEmployee(11);
 
