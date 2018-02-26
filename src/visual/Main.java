@@ -19,7 +19,8 @@ public class Main {
         //DatabaseConnector.insertRow(new Employee("Georgi", "Georgiev", 3, "0000000000", "IvaneIvane@gmail.com", "0888888888"));
 
         //DatabaseConnector.deleteEmployee(11);
-        DatabaseConnector.updateRow(3, new Department(4, "Hong Kong"));
+        TableModel taskModel = DatabaseConnector.getTaskModel();
+        System.out.println(taskModel.getValueAt(0, 3));
 
         /*
         Connection connection = DatabaseConnector.getConnection();

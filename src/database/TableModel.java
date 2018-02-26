@@ -15,7 +15,9 @@ public class TableModel extends AbstractTableModel {
     private Object[][] data;
     private String[] columnNames;
 
-    public TableModel(ResultSet resultSet) {
+    public TableModel() {}
+
+    public void Initialize(ResultSet resultSet) {
         try {
             initializeData(resultSet);
         } catch (Exception e) {

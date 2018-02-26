@@ -53,7 +53,5 @@ public abstract class TableEntry {
 
     protected abstract void setStatementValues(PreparedStatement statement) throws SQLException;
 
-
-
-    //public abstract PreparedStatement generateUpdateQuery(Connection databaseConnection, String schemaName, int id);
+    //TODO : Allow passing of null for table entry values. If a value is null, update statements don't change it
 }

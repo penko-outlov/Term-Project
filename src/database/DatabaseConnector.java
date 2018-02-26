@@ -29,27 +29,28 @@ public class DatabaseConnector {
     }
 
     public static TableModel getTaskModel() {
-        return getTableModel(Task.TABLE_NAME);
+        return getTableModel(Task.TABLE_NAME, new TaskTableModel());
     }
 
     public static TableModel getDepartmentModel() {
-        return getTableModel(Department.TABLE_NAME);
+        return getTableModel(Department.TABLE_NAME, new TableModel());
     }
 
     public static TableModel getEmployeeModel() {
-        return getTableModel(Employee.TABLE_NAME);
+        return getTableModel(Employee.TABLE_NAME, new TableModel());
     }
 
-    private static TableModel getTableModel(String tableName) {
+    public static TableModel getStatusModel() { return getTableModel(Task.STATUS_TABLE_NAME, new TableModel());}
+
+    private static TableModel getTableModel(String tableName, TableModel model) {
         connection = getConnection();
         String sql = "select * from task_management." + tableName + ";";
         ResultSet result = null;
-        TableModel model = null;
 
         try {
             PreparedStatement state = connection.prepareStatement(sql);
             result = state.executeQuery();
-            model = new TableModel(result);
+            model.Initialize(result);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {

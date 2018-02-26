@@ -44,7 +44,7 @@ FOREIGN KEY(department_id) REFERENCES departments(department_id),
 FOREIGN KEY(requester_id) REFERENCES employees(employee_id),
 FOREIGN KEY(taker_id) REFERENCES employees(employee_id),
 request_date DATETIME NOT NULL,
-date_taken DATETIME NOT NULL,
+date_taken DATETIME,
 time_estimate_hours INT,
 date_completed DATETIME,
 );
