@@ -1,5 +1,6 @@
-package database.queries;
+package database.queries.insert;
 
+import database.queries.IQuery;
 import utility.StringUtility;
 
 import java.sql.Connection;
@@ -19,16 +20,16 @@ public abstract class InsertQuery implements IQuery {
     }
 
     @Override
-    public PreparedStatement getPreparedStatement(Connection databaseConnection) {
+    public void execute(Connection databaseConnection) {
         PreparedStatement statement = null;
         try {
             statement = databaseConnection.prepareStatement(queryTemplateText);
             setStatementValues(statement);
+            statement.execute();
         } catch (SQLException e) {
             System.out.println("Failed to generate prepared statement!");
             e.printStackTrace();
         }
-        return  statement;
     }
 
     protected abstract void setStatementValues(PreparedStatement statement) throws SQLException;

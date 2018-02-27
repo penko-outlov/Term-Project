@@ -8,6 +8,7 @@ import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 
 public class TableModel extends AbstractTableModel {
+
     private static final long serialVersionUID = 1L;
     private String tableName;
     private int rowCount;

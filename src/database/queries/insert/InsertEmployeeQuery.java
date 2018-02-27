@@ -1,4 +1,4 @@
-package database.queries;
+package database.queries.insert;
 
 import database.objects.Employee;
 
@@ -12,6 +12,11 @@ public class InsertEmployeeQuery extends InsertQuery {
     public InsertEmployeeQuery(Employee employee) {
         super(Employee.TABLE_NAME, Employee.COLUMN_NAMES);
         this.employee = employee;
+    }
+
+    public InsertEmployeeQuery(String firstName, String lastName, int departmentId, String egn, String email, String telephone) {
+        super(Employee.TABLE_NAME, Employee.COLUMN_NAMES);
+        this.employee = new Employee(firstName, lastName, departmentId, egn, email, telephone);
     }
 
     @Override

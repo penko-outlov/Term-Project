@@ -107,13 +107,7 @@ public class DatabaseConnector {
 
     public static void executeQuery(IQuery query) {
         connection = getConnection();
-        PreparedStatement preparedStatement = query.getPreparedStatement(connection);
-
-        try {
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        query.execute(connection);
     }
 
 }
