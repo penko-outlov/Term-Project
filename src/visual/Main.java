@@ -1,15 +1,7 @@
 package visual;
 
 import database.DatabaseConnector;
-import database.TableModel;
-import database.objects.Department;
-import database.objects.Employee;
-import org.h2.engine.Database;
-import utility.StringUtility;
-
-import javax.swing.SwingUtilities;
-import javax.xml.crypto.Data;
-import java.sql.Connection;
+import database.queries.InsertDepartmentQuery;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,8 +11,10 @@ public class Main {
         //DatabaseConnector.insertRow(new Employee("Georgi", "Georgiev", 3, "0000000000", "IvaneIvane@gmail.com", "0888888888"));
 
         //DatabaseConnector.deleteEmployee(11);
-        TableModel taskModel = DatabaseConnector.getTaskModel();
-        System.out.println(taskModel.getValueAt(0, 3));
+        //TableModel taskModel = DatabaseConnector.getTaskModel();
+        //System.out.println(taskModel.getValueAt(0, 3));
+
+        DatabaseConnector.executeQuery(new InsertDepartmentQuery(1, "Beijing"));
 
         /*
         Connection connection = DatabaseConnector.getConnection();

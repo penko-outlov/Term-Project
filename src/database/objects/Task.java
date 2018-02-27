@@ -9,7 +9,7 @@ public class Task extends TableEntry {
     public static final String ID_COLUMN_NAME = "TASK_ID";
     public static final String TABLE_NAME = "tasks";
     public static final String STATUS_TABLE_NAME = "status";
-    private static final String[] COLUMN_NAMES = { "NAME", "DESCRIPTION", "STATUS", "DEPARTMENT_ID", "REQUESTED_ID", "TAKER_ID", "REQUEST_DATE", "DATE_TAKEN", "TIME_ESTIMATED_HOURS", "DATE_COMPLETED"};
+    public static final String[] COLUMN_NAMES = { "NAME", "DESCRIPTION", "STATUS", "DEPARTMENT_ID", "REQUESTED_ID", "TAKER_ID", "REQUEST_DATE", "DATE_TAKEN", "TIME_ESTIMATED_HOURS", "DATE_COMPLETED"};
     private static final String INSERT_QUERY = TableEntry.generateInsertQuery(TABLE_NAME, COLUMN_NAMES);
     private static final String UPDATE_QUERY = TableEntry.generateUpdateQuery(TABLE_NAME, ID_COLUMN_NAME, COLUMN_NAMES);
 
@@ -65,6 +65,46 @@ public class Task extends TableEntry {
         statement.setDate(8, java.sql.Date.valueOf(dateTaken.toLocalDate()));
         statement.setInt(9, timeEstimateHours);
         statement.setDate(10, java.sql.Date.valueOf(dateCompleted.toLocalDate()));
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getStatusId() {
+        return statusId;
+    }
+
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public int getRequesterId() {
+        return requesterId;
+    }
+
+    public int getTakerId() {
+        return takerId;
+    }
+
+    public LocalDateTime getRequestDate() {
+        return requestDate;
+    }
+
+    public LocalDateTime getDateTaken() {
+        return dateTaken;
+    }
+
+    public int getTimeEstimateHours() {
+        return timeEstimateHours;
+    }
+
+    public LocalDateTime getDateCompleted() {
+        return dateCompleted;
     }
 }
 

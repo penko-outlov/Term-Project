@@ -4,6 +4,8 @@ import database.objects.Department;
 import database.objects.Employee;
 import database.objects.TableEntry;
 import database.objects.Task;
+import database.queries.IQuery;
+
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -98,6 +100,17 @@ public class DatabaseConnector {
         try {
             PreparedStatement prepStatement = entry.generateUpdateStatement(connection, id);
             prepStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void executeQuery(IQuery query) {
+        connection = getConnection();
+        PreparedStatement preparedStatement = query.getPreparedStatement(connection);
+
+        try {
+            preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
