@@ -1,7 +1,9 @@
 package database;
 
 import database.objects.Department;
-
+import database.objects.Employee;
+import database.objects.TableEntry;
+import database.objects.Task;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,17 +12,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DatabaseConnector {
-    static Connection connection = null;
-
-    private static final String SCHEMA_NAME = "task_management";
-    private static final String TASK_TABLE_NAME = "tasks";
-    private static final String DEPARTMENT_TABLE_NAME = "departments";
-    private static final String EMPLOYEE_TABLE_NAME = "employees";
+    private static Connection connection = null;
 
     public static Connection getConnection() {
         try {
             Class.forName("org.h2.Driver");
             connection = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test2", "JohnSmith", "");
+            Statement statement = connection.createStatement();
+            statement.execute("SET SCHEMA TASK_MANAGEMENT");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -30,15 +29,15 @@ public class DatabaseConnector {
     }
 
     public static TableModel getTaskModel() {
-        return getTableModel(TASK_TABLE_NAME);
+        return getTableModel(Task.TABLE_NAME);
     }
 
     public static TableModel getDepartmentModel() {
-        return getTableModel(DEPARTMENT_TABLE_NAME);
+        return getTableModel(Department.TABLE_NAME);
     }
 
     public static TableModel getEmployeeModel() {
-        return getTableModel(EMPLOYEE_TABLE_NAME);
+        return getTableModel(Employee.TABLE_NAME);
     }
 
     private static TableModel getTableModel(String tableName) {
@@ -60,14 +59,44 @@ public class DatabaseConnector {
         return model;
     }
 
-    public static void insertDepartment(Department department) {
+    public static void insertRow(TableEntry entry) {
         connection = getConnection();
 
         try {
-            Statement statement = connection.createStatement();
+            PreparedStatement prepStatement = entry.generateInsertStatement(connection);
+            prepStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-            statement.executeUpdate("INSERT INTO " + SCHEMA_NAME + "." + DEPARTMENT_TABLE_NAME + " VALUES " + department);
+    public static void deleteTask(int id) { deleteRow(Task.TABLE_NAME, Task.ID_COLUMN_NAME, id);}
 
+    public static void deleteDepartment(int id) { deleteRow(Department.TABLE_NAME, Department.ID_COLUMN_NAME, id);}
+
+    public static void deleteEmployee(int id) { deleteRow(Employee.TABLE_NAME, Employee.ID_COLUMN_NAME, id);}
+
+    private static void deleteRow(String tableName, String idColumnName,  int id) {
+        String sql = "DELETE FROM " + tableName + " WHERE " + idColumnName + " = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateRow(int id, TableEntry entry) {
+        connection = getConnection();
+
+        try {
+            PreparedStatement prepStatement = entry.generateUpdateStatement(connection, id);
+            prepStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
