@@ -5,6 +5,9 @@ import database.objects.Employee;
 import database.objects.TableEntry;
 import database.objects.Task;
 import database.queries.IQuery;
+import database.queries.delete.DeleteDepartmentQuery;
+import database.queries.delete.DeleteEmployeeQuery;
+import database.queries.delete.DeleteTaskQuery;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -73,26 +76,11 @@ public class DatabaseConnector {
         }
     }
 
-    public static void deleteTask(int id) { deleteRow(Task.TABLE_NAME, Task.ID_COLUMN_NAME, id);}
+    public static void deleteTask(int id) { executeQuery(new DeleteTaskQuery(id));}
 
-    public static void deleteDepartment(int id) { deleteRow(Department.TABLE_NAME, Department.ID_COLUMN_NAME, id);}
+    public static void deleteDepartment(int id) { executeQuery(new DeleteDepartmentQuery(id));}
 
-    public static void deleteEmployee(int id) { deleteRow(Employee.TABLE_NAME, Employee.ID_COLUMN_NAME, id);}
-
-    private static void deleteRow(String tableName, String idColumnName,  int id) {
-        String sql = "DELETE FROM " + tableName + " WHERE " + idColumnName + " = ?";
-
-        try (Connection conn = getConnection();
-             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-
-            preparedStatement.setInt(1, id);
-
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    public static void deleteEmployee(int id) { executeQuery(new DeleteEmployeeQuery(id));}
 
     public static void updateRow(int id, TableEntry entry) {
         connection = getConnection();

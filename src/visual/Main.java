@@ -11,7 +11,9 @@ public class Main {
     public static void main(String[] args) {
 
         //------------ Example deletion ------------//
-        //DatabaseConnector.executeQuery(new DeleteDepartmentQuery(4));
+        // DatabaseConnector.executeQuery(new DeleteDepartmentQuery(4));
+        //OR
+        // DatabaseConnector.deleteDepartment(4);
 
 
         //------------ Example insertion ------------//
