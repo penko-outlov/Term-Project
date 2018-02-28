@@ -3,6 +3,7 @@ package visual;
 import database.DatabaseConnector;
 import database.queries.departments.DeleteDepartmentQuery;
 import database.queries.departments.InsertDepartmentQuery;
+import database.queries.departments.UpdateDepartmentQuery;
 import database.queries.employee.DeleteEmployeeQuery;
 import database.queries.employee.InsertEmployeeQuery;
 import database.queries.tasks.DeleteTaskQuery;
@@ -22,6 +23,10 @@ public class Main {
         //-------------DEPARTMENTS-------------//
         // DatabaseConnector.executeQuery(new InsertDepartmentQuery("Jerusalem", 2));
         // DatabaseConnector.executeQuery(new DeleteDepartmentQuery(2));
+        //--Update--//
+        // DatabaseConnector.executeQuery(new UpdateDepartmentQuery(2, null, 2));    //Change manager id only
+        // DatabaseConnector.executeQuery(new UpdateDepartmentQuery(5, "Paris", null));   //Change name only
+        // DatabaseConnector.executeQuery(new UpdateDepartmentQuery(3, "Moscow", 4));  // Change both
 
         //-------------EMPLOYEES-------------//
         // DatabaseConnector.executeQuery(new InsertEmployeeQuery("Georgi", "Georgiev", "9999999999", "Georgiev@gmail.com", 2));
