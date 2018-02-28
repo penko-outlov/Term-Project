@@ -1,4 +1,4 @@
-package database.queries.delete;
+package database.queries;
 
 import database.queries.IQuery;
 

@@ -1,6 +1,7 @@
-package database.queries.delete;
+package database.queries.departments;
 
 import database.objects.Department;
+import database.queries.DeleteQuery;
 
 public class DeleteDepartmentQuery extends DeleteQuery {
 

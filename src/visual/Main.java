@@ -1,26 +1,31 @@
 package visual;
 
 import database.DatabaseConnector;
-import database.objects.Department;
-import database.queries.delete.DeleteDepartmentQuery;
-import database.queries.insert.InsertDepartmentQuery;
-
-import javax.xml.crypto.Data;
+import database.queries.departments.DeleteDepartmentQuery;
+import database.queries.departments.InsertDepartmentQuery;
+import database.queries.employee.DeleteEmployeeQuery;
+import database.queries.employee.InsertEmployeeQuery;
+import database.queries.tasks.DeleteTaskQuery;
+import database.queries.tasks.InsertTaskQuery;
+import database.queries.tasks.MarkTaskFinishedQuery;
 
 public class Main {
     public static void main(String[] args) {
 
-        //------------ Example deletion ------------//
-        // DatabaseConnector.executeQuery(new DeleteDepartmentQuery(4));
-        //OR
-        // DatabaseConnector.deleteDepartment(4);
 
+        //-------------TASKS-------------//
+        // DatabaseConnector.executeQuery(new InsertTaskQuery("Create Snow Level", "Make a first layout for the snow level", 3, 3));
+        // DatabaseConnector.executeQuery(new TakeTaskQuery(2, 2, 5));
+        // DatabaseConnector.executeQuery(new MarkTaskFinishedQuery(2));
+        // DatabaseConnector.executeQuery(new DeleteTaskQuery(4));
 
-        //------------ Example insertion ------------//
-        //DatabaseConnector.executeQuery(new InsertDepartmentQuery(4, "Warsaw"));
+        //-------------DEPARTMENTS-------------//
+        // DatabaseConnector.executeQuery(new InsertDepartmentQuery("Jerusalem", 2));
+        // DatabaseConnector.executeQuery(new DeleteDepartmentQuery(2));
 
-
-        //DatabaseConnector.executeQuery(new InsertDepartmentQuery(1, "Beijing"));
+        //-------------EMPLOYEES-------------//
+        // DatabaseConnector.executeQuery(new InsertEmployeeQuery("Georgi", "Georgiev", "9999999999", "Georgiev@gmail.com", 2));
+        // DatabaseConnector.executeQuery(new DeleteEmployeeQuery(2));
 
         /*
         Connection connection = DatabaseConnector.getConnection();

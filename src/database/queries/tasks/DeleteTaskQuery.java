@@ -1,6 +1,7 @@
-package database.queries.delete;
+package database.queries.tasks;
 
 import database.objects.Task;
+import database.queries.DeleteQuery;
 
 public class DeleteTaskQuery extends DeleteQuery {
 

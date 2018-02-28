@@ -5,9 +5,9 @@ import database.objects.Employee;
 import database.objects.TableEntry;
 import database.objects.Task;
 import database.queries.IQuery;
-import database.queries.delete.DeleteDepartmentQuery;
-import database.queries.delete.DeleteEmployeeQuery;
-import database.queries.delete.DeleteTaskQuery;
+import database.queries.departments.DeleteDepartmentQuery;
+import database.queries.employee.DeleteEmployeeQuery;
+import database.queries.tasks.DeleteTaskQuery;
 
 import java.sql.Statement;
 import java.sql.Connection;
