@@ -65,37 +65,23 @@ public class DatabaseConnector {
         return model;
     }
 
-    public static void insertRow(TableEntry entry) {
-        connection = getConnection();
-
-        try {
-            PreparedStatement prepStatement = entry.generateInsertStatement(connection);
-            prepStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public static void deleteTask(int id) { executeQuery(new DeleteTaskQuery(id));}
 
     public static void deleteDepartment(int id) { executeQuery(new DeleteDepartmentQuery(id));}
 
     public static void deleteEmployee(int id) { executeQuery(new DeleteEmployeeQuery(id));}
 
-    public static void updateRow(int id, TableEntry entry) {
+    public static TableModel executeQuery(IQuery query) {
         connection = getConnection();
+        ResultSet result = query.execute(connection);
 
-        try {
-            PreparedStatement prepStatement = entry.generateUpdateStatement(connection, id);
-            prepStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if(result != null) {
+            TableModel model = new TableModel();
+            model.Initialize(result);
+            return model;
         }
-    }
 
-    public static void executeQuery(IQuery query) {
-        connection = getConnection();
-        query.execute(connection);
+        return null;
     }
 
 }

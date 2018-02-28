@@ -4,13 +4,13 @@ import database.queries.IQuery;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DeleteQuery implements IQuery {
+public class DeleteQuery extends Query {
 
     private int id;
     private String sql;
-
 
     public DeleteQuery(int id, String tableName, String idColumnName) {
         this.id = id;
@@ -24,15 +24,12 @@ public class DeleteQuery implements IQuery {
 
 
     @Override
-    public void execute(Connection databaseConnection) {
-        PreparedStatement statement = null;
-        try {
-            statement = databaseConnection.prepareStatement(sql);
-            statement.setInt(1, id);
-            statement.execute();
-        } catch (SQLException e) {
-            System.out.println("Failed to generate prepared statement!");
-            e.printStackTrace();
-        }
+    protected String getQueryText() {
+        return sql;
+    }
+
+    @Override
+    protected void setStatementValues(PreparedStatement statement) throws SQLException {
+        statement.setInt(1, id);
     }
 }

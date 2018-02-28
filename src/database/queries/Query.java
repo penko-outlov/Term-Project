@@ -4,20 +4,25 @@ import database.queries.IQuery;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class Query implements IQuery {
 
-    public final void execute(Connection connection) {
+    public final ResultSet execute(Connection connection) {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(getQueryText());
             setStatementValues(statement);
-            statement.execute();
+            boolean returnedResultSet = statement.execute();
+            if(returnedResultSet) {
+                return statement.getResultSet();
+            }
         } catch (SQLException e) {
             System.out.println("Failed to generate prepared statement!");
             e.printStackTrace();
         }
+        return null;
     }
 
     protected abstract String getQueryText();
