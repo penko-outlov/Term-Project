@@ -13,6 +13,7 @@ import database.queries.tasks.InsertTaskQuery;
 import database.queries.tasks.MarkTaskFinishedQuery;
 import org.h2.engine.Database;
 
+import javax.swing.*;
 import javax.xml.crypto.Data;
 
 public class Main {
@@ -37,6 +38,7 @@ public class Main {
      //DatabaseConnector.executeQuery(new UpdateEmployeeQuery(6, "Dimitar", "Georgiev", null, "DimGer@gmail.com", 5 ,null));    //Set values that you want to stat the same to null
 
     public static void main(String[] args) {
+
 
 
         /*

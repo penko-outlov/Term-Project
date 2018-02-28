@@ -5,5 +5,7 @@ public class Status {
     public static final int TAKEN = 2;
     public static final int COMPLETED = 3;
     public static final int ON_HOLD = 4;
+
+    public static final String TABLE_NAME = "status";
 }
 
