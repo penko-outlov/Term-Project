@@ -3,6 +3,7 @@ package ui2;
 import database.DatabaseConnector;
 import database.queries.departments.SelectDepartmentsWithManager;
 import database.queries.employee.SelectEmployeesFromDepartmentQuery;
+import database.queries.tasks.SelectTasksForDepartment;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,12 +14,12 @@ public class TaskManagementFrame extends JFrame {
 
     public TaskManagementFrame() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(800, 700);
+        this.setSize(1000, 800);
 
         mainframe = new JPanel();
         mainframe.setLayout(new BorderLayout());
 
-        JTable table = new JTable(DatabaseConnector.executeQuery(new SelectDepartmentsWithManager("James Smith")));
+        JTable table = new JTable(DatabaseConnector.executeQuery(new SelectTasksForDepartment("Moscow")));
         mainframe.add(table, BorderLayout.CENTER);
 
         this.getContentPane().add(mainframe);
