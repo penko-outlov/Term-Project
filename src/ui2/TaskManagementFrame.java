@@ -4,6 +4,7 @@ import database.DatabaseConnector;
 import database.queries.departments.SelectDepartmentsWithManager;
 import database.queries.employee.SelectEmployeesFromDepartmentQuery;
 import database.queries.special.SelectEmployeesForTask;
+import database.queries.special.SelectTasksForDepartmentWithStatus;
 import database.queries.tasks.SelectTasksForDepartment;
 
 import javax.swing.*;
@@ -15,13 +16,13 @@ public class TaskManagementFrame extends JFrame {
 
     public TaskManagementFrame() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(1000, 800);
+        this.setSize(1200, 800);
 
         mainframe = new JPanel();
         mainframe.setLayout(new BorderLayout());
 
         //JTable table = new JTable(DatabaseConnector.executeQuery(new SelectTasksForDepartment("Moscow")));
-        JTable table = new JTable(DatabaseConnector.executeQuery(new SelectEmployeesForTask("Create Pathfinding")));
+        JTable table = new JTable(DatabaseConnector.executeQuery(new SelectTasksForDepartmentWithStatus("Moscow", 1)));
 
         mainframe.add(table, BorderLayout.CENTER);
 
