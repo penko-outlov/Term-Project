@@ -6,12 +6,11 @@ import database.queries.SelectAllQuery;
 import database.queries.departments.DeleteDepartmentQuery;
 import database.queries.employee.DeleteEmployeeQuery;
 import database.queries.tasks.DeleteTaskQuery;
+import database.queries.tasks.SelectAllTasksQuery;
 
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DatabaseConnector {
@@ -32,7 +31,7 @@ public class DatabaseConnector {
     }
 
     public static TableModel getTaskModel() {
-        return executeQuery(new SelectAllQuery(Task.TABLE_NAME));
+        return executeQuery(new SelectAllTasksQuery());
     }
 
     public static TableModel getDepartmentModel() {
