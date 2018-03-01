@@ -24,7 +24,7 @@ public class Main {
     // DatabaseConnector.executeQuery(new TakeTaskQuery(2, 2, 5));
     // DatabaseConnector.executeQuery(new MarkTaskFinishedQuery(2));
     // DatabaseConnector.executeQuery(new DeleteTaskQuery(4));
-    //DatabaseConnector.executeQuery(new SelectTasksForDepartment("Moscow")
+    // DatabaseConnector.executeQuery(new SelectTasksForDepartment("Moscow"));
 
     //-------------DEPARTMENTS-------------//
     // DatabaseConnector.executeQuery(new InsertDepartmentQuery("Jerusalem", 2));
@@ -41,7 +41,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //DatabaseConnector.executeQuery(new InsertEmployeeQuery("Ivan", "Grigorov", "9999999999", "Ivan@gmail.com", 3));
+        // DatabaseConnector.executeQuery(new InsertEmployeeQuery("Ivan", "Grigorov", "9999999999", "Ivan@gmail.com", 3));
         // DatabaseConnector.executeQuery(new InsertTaskQuery("Create Character Model", "", 2, 1));
         DatabaseConnector.executeQuery(new InsertEmployeeQuery("Georgi", "Georgiev", "9999999999", "Georgiev@gmail.com", 3));
 

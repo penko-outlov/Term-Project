@@ -6,7 +6,6 @@ import utility.StringUtility;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.SQLType;
 import java.sql.Types;
 import java.time.LocalDateTime;
 

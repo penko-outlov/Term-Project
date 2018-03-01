@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class SelectAllTasksQuery extends Query {
 
     private static final String QUERY_TEXT =
-            "SELECT tasks.name, STRING.CONCAT(requester.first_name, ' ', requester.last_name) as Requester, tasks.request_date, departments.name as Department , status.name as Status, " +
+            "SELECT tasks.task_id, tasks.name, STRING.CONCAT(requester.first_name, ' ', requester.last_name) as Requester, tasks.request_date, departments.name as Department , status.name as Status, " +
                     "STRING.CONCAT(taker.first_name, ' ', taker.first_name) as Taker, tasks.date_taken, tasks.time_estimate_hours, tasks.date_completed " +
             "FROM tasks " +
             "LEFT JOIN status ON status.status_id = tasks.status " +

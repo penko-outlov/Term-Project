@@ -22,7 +22,6 @@ public class DeleteQuery extends Query {
         this.sql = sql;
     }
 
-
     @Override
     protected String getQueryText() {
         return sql;

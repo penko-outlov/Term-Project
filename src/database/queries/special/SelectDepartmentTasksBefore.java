@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class SelectDepartmentTasksBefore extends Query {
 
     private static final String QUERY_TEXT =
-                    "SELECT tasks.name, STRING.CONCAT(req.first_name, ' ', req.last_name) as Requester, tasks.request_date as Request_Date, tasks.deadline_date as Deadline, status.name as Status " +
+                    "SELECT tasks.task_id, tasks.name, STRING.CONCAT(req.first_name, ' ', req.last_name) as Requester, tasks.request_date as Request_Date, tasks.deadline_date as Deadline, status.name as Status " +
                     "FROM tasks " +
                     "JOIN departments ON departments.department_id = tasks.department_id " +
                     "JOIN status ON status.status_id = tasks.status " +
