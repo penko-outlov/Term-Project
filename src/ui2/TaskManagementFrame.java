@@ -3,6 +3,7 @@ package ui2;
 import database.DatabaseConnector;
 import database.queries.departments.SelectDepartmentsWithManager;
 import database.queries.employee.SelectEmployeesFromDepartmentQuery;
+import database.queries.special.SelectDepartmentTasksBefore;
 import database.queries.special.SelectEmployeesForTask;
 import database.queries.special.SelectTasksForDepartmentWithStatus;
 import database.queries.tasks.SelectTasksForDepartment;
@@ -10,6 +11,8 @@ import ui2.queries.SelectTasksForDepartmentWithStatusPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class TaskManagementFrame extends JFrame {
 
@@ -23,7 +26,8 @@ public class TaskManagementFrame extends JFrame {
         mainframe.setLayout(new BorderLayout());
 
         //JTable table = new JTable(DatabaseConnector.executeQuery(new SelectTasksForDepartment("Moscow")));
-        JTable table = new JTable(DatabaseConnector.executeQuery(new SelectTasksForDepartmentWithStatus("Moscow", 1)));
+        LocalDateTime deadline =  LocalDateTime.of(2018, 3, 15, 0,0);
+        JTable table = new JTable(DatabaseConnector.executeQuery(new SelectDepartmentTasksBefore("Marketing", deadline )));
         mainframe.add(table, BorderLayout.CENTER);
 
         JPanel rightPanel = new JPanel();

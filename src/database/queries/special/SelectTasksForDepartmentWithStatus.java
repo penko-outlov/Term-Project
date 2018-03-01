@@ -1,5 +1,7 @@
 package database.queries.special;
 
+import database.TableModel;
+import database.TaskTableModel;
 import database.queries.Query;
 
 import java.sql.PreparedStatement;
@@ -28,5 +30,10 @@ public class SelectTasksForDepartmentWithStatus extends Query {
     protected void setStatementValues(PreparedStatement statement) throws SQLException {
         statement.setString(1, departmentName);
         statement.setInt(2, statusId);
+    }
+
+    @Override
+    protected TableModel createTableModel() {
+        return new TaskTableModel();
     }
 }
