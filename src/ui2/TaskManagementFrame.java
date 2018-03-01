@@ -28,8 +28,8 @@ public class TaskManagementFrame extends JFrame {
         mainframe.add(table, BorderLayout.CENTER);
 
         JPanel rightPanel = new JPanel();
-        //JPanel queryPanel = new SelectTasksForDepartmentWithStatusPanel(table);
-        //rightPanel.add(queryPanel);
+        JPanel queryPanel = new SelectTasksForDepartmentWithStatusPanel(table);
+        rightPanel.add(queryPanel);
         mainframe.add(rightPanel, BorderLayout.EAST);
 
         this.getContentPane().add(mainframe);
