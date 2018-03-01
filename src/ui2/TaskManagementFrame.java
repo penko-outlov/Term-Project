@@ -1,6 +1,7 @@
 package ui2;
 
 import database.DatabaseConnector;
+import database.queries.departments.SelectDepartmentsWithManager;
 import database.queries.employee.SelectEmployeesFromDepartmentQuery;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ public class TaskManagementFrame extends JFrame {
         mainframe = new JPanel();
         mainframe.setLayout(new BorderLayout());
 
-        JTable table = new JTable(DatabaseConnector.executeQuery(new SelectEmployeesFromDepartmentQuery("Hong Kong")));
+        JTable table = new JTable(DatabaseConnector.executeQuery(new SelectDepartmentsWithManager("James Smith")));
         mainframe.add(table, BorderLayout.CENTER);
 
         this.getContentPane().add(mainframe);
