@@ -1,7 +1,6 @@
-package database.queries.special;
 
-import database.TableModel;
-import database.TaskTableModel;
+package database.queries.special;
+/*
 import database.queries.Query;
 
 import java.sql.PreparedStatement;
@@ -30,9 +29,5 @@ public class SelectEmployeesForTask extends Query {
     protected void setStatementValues(PreparedStatement statement) throws SQLException {
         statement.setString(1, taskName);
     }
-
-    @Override
-    protected TableModel createTableModel() {
-        return new TaskTableModel();
-    }
 }
+*/

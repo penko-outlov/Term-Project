@@ -11,9 +11,13 @@ import java.time.LocalDateTime;
 //Returns all tasks from the specified department whose deadlines are before the specified date
 public class SelectDepartmentTasksBefore extends Query {
 
-    private static final String QUERY_TEXT = "SELECT * FROM " +
-            "TASKS T JOIN DEPARTMENTS D ON T.DEPARTMENT_ID = D.DEPARTMENT_iD " +
-            "WHERE D.NAME = ? AND (DEADLINE_DATE < ? OR DEADLINE_DATE IS NULL)";
+    private static final String QUERY_TEXT =
+                    "SELECT tasks.name, STRING.CONCAT(req.first_name, ' ', req.last_name) as Requester, tasks.request_date as Request_Date, tasks.deadline_date as Deadline, status.name as Status " +
+                    "FROM tasks " +
+                    "JOIN departments ON departments.department_id = tasks.department_id " +
+                    "JOIN status ON status.status_id = tasks.status " +
+                    "JOIN employees req ON req.employee_id = tasks.requester_id " +
+                    "WHERE departments.name = ? AND (deadline_date < ? OR deadline_date IS NULL)";
 
     private String departmentName;
     private LocalDateTime beforeDate;
@@ -32,10 +36,5 @@ public class SelectDepartmentTasksBefore extends Query {
     protected void setStatementValues(PreparedStatement statement) throws SQLException {
         statement.setString(1, departmentName);
         statement.setDate(2,  java.sql.Date.valueOf(beforeDate.toLocalDate()));
-    }
-
-    @Override
-    protected TableModel createTableModel() {
-        return new TaskTableModel();
     }
 }

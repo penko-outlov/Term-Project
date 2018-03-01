@@ -20,7 +20,7 @@ public class TaskManagementFrame extends JFrame {
 
     public TaskManagementFrame() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(1200, 800);
+        this.setSize(1400, 800);
 
         mainframe = new JPanel();
         mainframe.setLayout(new BorderLayout());
