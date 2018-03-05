@@ -1,3 +1,5 @@
+package visual;
+
 import database.DatabaseConnector;
 import database.TableModel;
 import database.queries.departments.DeleteDepartmentQuery;
@@ -11,11 +13,9 @@ import database.queries.tasks.InsertTaskQuery;
 import database.queries.tasks.MarkTaskFinishedQuery;
 import org.h2.engine.Database;
 import ui2.TaskManagementFrame;
-import visual.Window;
 
 import javax.swing.*;
 import javax.xml.crypto.Data;
-import java.sql.Connection;
 
 public class Main {
 
@@ -41,27 +41,25 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // DatabaseConnector.executeQuery(new InsertEmployeeQuery("Ivan", "Grigorov", "9999999999", "Ivan@gmail.com", 3));
-        // DatabaseConnector.executeQuery(new InsertTaskQuery("Create Character Model", "", 2, 1));
-//        DatabaseConnector.executeQuery(new InsertEmployeeQuery("Georgi", "Georgiev", "9999999999", "Georgiev@gmail.com", 3));
 
+        SwingUtilities.invokeLater(() -> {
+            new TaskManagementFrame();
+        });
 
-
-//        SwingUtilities.invokeLater(() -> {
-//            new TaskManagementFrame();
-//        });
-
+        /*
         Connection connection = DatabaseConnector.getConnection();
 
         if(connection == null) {
             System.out.println("Failed to connect");
             return;
         }
-//
-//        TableModel depTable = DatabaseConnector.getDepartmentModel();
+
+        TableModel depTable = DatabaseConnector.getDepartmentModel();
 
         SwingUtilities.invokeLater(() -> {
             new Window();
         });
+        */
+
     }
 }

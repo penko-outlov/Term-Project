@@ -9,9 +9,9 @@ public class SelectDepartmentsWithManager extends Query {
 
     private String managerName;
 
-    private static final String QUERY_TEXT = "SELECT * " +
-            "FROM DEPARTMENTS D " +
-            "WHERE (SELECT CONCAT(FIRST_NAME,' ',LAST_NAME) FROM EMPLOYEES E WHERE E.EMPLOYEE_ID = D.MANAGER_ID) = ?";
+    private static final String QUERY_TEXT = "SELECT dep.department_id, dep.name " +
+            "FROM departments dep " +
+            "WHERE (SELECT CONCAT(first_name,' ',last_name) FROM employees emp WHERE emp.employee_id = dep.manager_id) = ?";
 
     public SelectDepartmentsWithManager(String managerName) {
         this.managerName = managerName;
