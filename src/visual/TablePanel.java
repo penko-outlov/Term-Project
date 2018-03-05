@@ -1,11 +1,17 @@
 package visual;
 
+//import com.sun.corba.se.impl.encoding.CodeSetConversion;
+//import com.sun.deploy.security.MSCryptoProvider;
 import database.DatabaseConnector;
 import database.TableModel;
 import database.queries.employee.DeleteEmployeeQuery;
+import org.h2.util.CacheTQ;
 
+import javax.imageio.spi.IIOServiceProvider;
 import javax.swing.*;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -72,23 +78,6 @@ public class TablePanel extends JPanel implements ActionListener {
         add(sidePanel);
     }
 
-    private void insert() {
-    }
-
-    private void delete() {
-        int row = currentTable.getSelectedRow();
-        int employeeId = (int) currentTable.getValueAt(row, 0);
-        DatabaseConnector.executeQuery(new DeleteEmployeeQuery(employeeId));
-    }
-
-    private void updateValue() {
-
-    }
-
-    private void select() {
-
-    }
-
     @Override
     public void actionPerformed(ActionEvent event) {
         if (currentTable.getSelectedRow() == -1 && currentTable.getSelectedColumn() == -1) {
@@ -98,16 +87,15 @@ public class TablePanel extends JPanel implements ActionListener {
         String action = (String) controls.getSelectedItem();
         switch (action) {
             case "Insert":
-                insert();
                 break;
             case "Delete":
-                delete();
+                int row = currentTable.getSelectedRow();
+                int employeeId = (int) currentTable.getValueAt(row, 0);
+                DatabaseConnector.executeQuery(new DeleteEmployeeQuery(employeeId));
                 break;
             case "Update":
-                updateValue();
                 break;
             case "Select":
-                select();
                 break;
         }
     }

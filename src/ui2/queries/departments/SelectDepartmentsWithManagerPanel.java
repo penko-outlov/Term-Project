@@ -1,8 +1,9 @@
-package ui2.queries;
+package ui2.queries.departments;
 
 import database.DatabaseConnector;
 import database.queries.departments.SelectDepartmentsWithManager;
 import database.queries.employee.SelectEmployeesFromDepartmentQuery;
+import ui2.queries.QueryPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
