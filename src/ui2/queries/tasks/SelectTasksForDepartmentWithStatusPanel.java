@@ -38,7 +38,6 @@ public class SelectTasksForDepartmentWithStatusPanel extends QueryPanel {
 
         statusDropdown = new JComboBox(statusTypes.toArray());
         statusDropdown.setSelectedIndex(0);
-        statusDropdown.addActionListener(this);
 
         this.add(statusDropdown);
     }

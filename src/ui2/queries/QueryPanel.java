@@ -34,6 +34,13 @@ public abstract class QueryPanel extends JPanel implements ActionListener {
         return textField;
     }
 
+    protected JLabel addLabel(String labelText) {
+        this.add(new JPanel());
+        JLabel newLabel = new JLabel(labelText);
+        this.add(newLabel);
+        return newLabel;
+    }
+
     protected void addExecuteButton() {
         addExecuteButton("Execute");
     }
