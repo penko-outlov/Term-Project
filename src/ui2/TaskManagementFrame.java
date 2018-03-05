@@ -4,6 +4,7 @@ import database.DatabaseConnector;
 import ui2.queries.SelectDepartmentsWithManagerPanel;
 import ui2.queries.SelectEmployeesFromDepartmentPanel;
 import ui2.queries.SelectTasksForDepartmentPanel;
+import ui2.queries.SelectTasksForDepartmentWithStatusPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +24,7 @@ public class TaskManagementFrame extends JFrame {
         mainframe.add(table, BorderLayout.CENTER);
 
         JPanel rightPanel = new JPanel();
-        JPanel queryPanel = new SelectDepartmentsWithManagerPanel(table);
+        JPanel queryPanel = new SelectTasksForDepartmentPanel(table);
         rightPanel.add(queryPanel);
         mainframe.add(rightPanel, BorderLayout.EAST);
 

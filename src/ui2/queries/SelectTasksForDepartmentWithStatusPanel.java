@@ -14,7 +14,6 @@ public class SelectTasksForDepartmentWithStatusPanel extends QueryPanel {
 
     JTextField departmentNameField;
     JComboBox statusDropdown;
-    JTable targetTable;
 
     public SelectTasksForDepartmentWithStatusPanel(JTable targetTable) {
         super(targetTable);
@@ -37,7 +36,7 @@ public class SelectTasksForDepartmentWithStatusPanel extends QueryPanel {
         }
 
         statusDropdown = new JComboBox(statusTypes.toArray());
-        statusDropdown.setSelectedIndex(1);
+        statusDropdown.setSelectedIndex(0);
         statusDropdown.addActionListener(this);
 
         this.add(statusDropdown);
