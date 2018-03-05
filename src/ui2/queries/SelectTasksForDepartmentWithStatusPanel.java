@@ -3,45 +3,30 @@ package ui2.queries;
 import database.DatabaseConnector;
 import database.TableModel;
 import database.queries.special.SelectTasksForDepartmentWithStatus;
+import database.queries.tasks.SelectTasksForDepartment;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectTasksForDepartmentWithStatusPanel extends JPanel implements ActionListener {
+public class SelectTasksForDepartmentWithStatusPanel extends QueryPanel {
 
     JTextField departmentNameField;
     JComboBox statusDropdown;
     JTable targetTable;
 
     public SelectTasksForDepartmentWithStatusPanel(JTable targetTable) {
+        super(targetTable);
 
-        this.targetTable = targetTable;
+        departmentNameField = addTextField("Department");
+        addStatusComboBox();
+        addExecuteButton();
 
-        this.setLayout(new SpringLayout());
-
-        createDepartmentNameField();;
-        createStatusComboBox();
-        createButton();
-
-        layout.SpringUtilities.makeCompactGrid(this,
-                3, 2, //rows, cols
-                6, 6,        //initX, initY
-                6, 6);       //xPad, yPad
+        makeCompactGrid(3);
     }
 
-    private void createDepartmentNameField() {
-        JLabel label = new JLabel("Department");
-        this.add(label);
-
-        departmentNameField = new JTextField(30);
-        this.add(departmentNameField);
-    }
-
-    private void createStatusComboBox() {
+    private void addStatusComboBox() {
         JLabel label = new JLabel("Status");
         this.add(label);
 
@@ -58,19 +43,8 @@ public class SelectTasksForDepartmentWithStatusPanel extends JPanel implements A
         this.add(statusDropdown);
     }
 
-    private void createButton() {
-        this.add(new JPanel());
-
-        JButton searchButton = new JButton("Search");
-        searchButton.setActionCommand("search");
-        searchButton.addActionListener(this);
-        this.add(searchButton);
-    }
-
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand() == "search") {
-            targetTable.setModel(DatabaseConnector.executeQuery(new SelectTasksForDepartmentWithStatus(departmentNameField.getText(), statusDropdown.getSelectedIndex() + 1)));
-        }
+    protected void execute() {
+        targetTable.setModel(DatabaseConnector.executeQuery(new SelectTasksForDepartmentWithStatus(departmentNameField.getText().trim(), statusDropdown.getSelectedIndex() + 1)));
     }
 }
