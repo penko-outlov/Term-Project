@@ -13,21 +13,26 @@ public class TaskManagementFrame extends JFrame {
     public TaskManagementFrame() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(1400, 800);
+        this.setResizable(false);
 
         mainframe = new JPanel();
-        mainframe.setLayout(new BorderLayout());
 
-        JTable table = new JTable(DatabaseConnector.getTaskModel());
-        mainframe.add(table, BorderLayout.CENTER);
-
-        JPanel rightPanel = new JPanel();
-        JPanel queryPanel = new SelectEmployeesFromDepartmentPanel(table);
-        rightPanel.add(queryPanel);
-        mainframe.add(rightPanel, BorderLayout.EAST);
+        addTables();
 
         this.getContentPane().add(mainframe);
 
+        this.pack();
         this.setVisible(true);
+    }
+
+    private void addTables() {
+        JTabbedPane tabbedPane = new JTabbedPane();
+
+        tabbedPane.addTab("Tasks", new TaskPanel());
+        tabbedPane.addTab("Employees", new EmployeePanel());
+        tabbedPane.addTab("Departments", new DepartmentPanel());
+
+        mainframe.add(tabbedPane);
     }
 
 }

@@ -19,7 +19,7 @@ public class InsertTaskQuery extends Query {
     LocalDateTime deadline;
 
     private static final String QUERY = "INSERT INTO TASKS (NAME, DESCRIPTION, DEPARTMENT_ID, REQUESTER_ID, STATUS, REQUEST_DATE, DEADLINE_DATE) " +
-                                        "VALUES " + StringUtility.createQuestionMarkParenthesizedList(6);
+                                        "VALUES " + StringUtility.createQuestionMarkParenthesizedList(7);
 
     public InsertTaskQuery(String name, String description, int departmentId, int requesterId, LocalDateTime deadline) {
         this.name = name;

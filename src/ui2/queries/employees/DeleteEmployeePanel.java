@@ -25,6 +25,10 @@ public class DeleteEmployeePanel extends QueryPanel {
     @Override
     protected void execute() {
         int row = targetTable.getSelectedRow();
+        if(row == -1) {
+            return;
+        }
+
         int employeeId = (int) targetTable.getValueAt(row, 0);
         DatabaseConnector.executeQuery(new DeleteEmployeeQuery(employeeId));
         targetTable.setModel(DatabaseConnector.getEmployeeModel());

@@ -7,23 +7,44 @@ import java.sql.SQLException;
 
 public class SelectDepartmentsWithManager extends Query {
 
-    private String managerName;
+    private String managerName = null;
 
-    private static final String QUERY_TEXT = "SELECT dep.department_id, dep.name " +
+    private Integer managerId = null;
+
+    private static final String NAME_QUERY_TEXT = "SELECT dep.department_id, dep.name " +
             "FROM departments dep " +
             "WHERE (SELECT CONCAT(first_name,' ',last_name) FROM employees emp WHERE emp.employee_id = dep.manager_id) = ?";
+
+    private static final String ID_QUERY_TEXT = "SELECT dep.department_id, dep.name " +
+            "FROM departments dep " +
+            "WHERE dep.manager_id = ?";
+
+
 
     public SelectDepartmentsWithManager(String managerName) {
         this.managerName = managerName;
     }
 
+
+    public SelectDepartmentsWithManager(Integer managerId) {
+        this.managerId = managerId;
+    }
+
     @Override
     protected String getQueryText() {
-        return QUERY_TEXT;
+        if(managerName != null) {
+            return NAME_QUERY_TEXT;
+        }
+        return ID_QUERY_TEXT;
     }
 
     @Override
     protected void setStatementValues(PreparedStatement statement) throws SQLException {
-        statement.setString(1, managerName);
+        if(managerName != null) {
+            statement.setString(1, managerName);
+        }
+        else {
+            statement.setInt(1, managerId.intValue());
+        }
     }
 }

@@ -11,11 +11,12 @@ import java.awt.event.ActionEvent;
 public class SelectDepartmentsWithManagerPanel extends QueryPanel {
 
     JTextField managerNameField;
+    JComboBox managerDropdown;
 
     public SelectDepartmentsWithManagerPanel(JTable targetTable) {
         super(targetTable);
 
-        managerNameField = addTextField("Manager");
+        managerDropdown = addDropdownFromTable("Manager", DatabaseConnector.getEmployeeModel(), 1, 2);
         addExecuteButton();
 
         makeCompactGrid(2);
@@ -23,6 +24,6 @@ public class SelectDepartmentsWithManagerPanel extends QueryPanel {
 
     @Override
     protected void execute() {
-        targetTable.setModel(DatabaseConnector.executeQuery(new SelectDepartmentsWithManager(managerNameField.getText().trim())));
+        targetTable.setModel(DatabaseConnector.executeQuery(new SelectDepartmentsWithManager(managerDropdown.getSelectedIndex() + 1)));
     }
 }

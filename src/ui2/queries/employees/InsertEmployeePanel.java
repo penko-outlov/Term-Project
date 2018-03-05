@@ -52,7 +52,7 @@ public class InsertEmployeePanel extends QueryPanel {
         }
 
         DatabaseConnector.executeQuery(new InsertEmployeeQuery(firstNameField.getText().trim(),
-                lastNameField.getToolTipText().trim(),
+                lastNameField.getText().trim(),
                 egnField.getText().trim(),
                 emailField.getText().trim(),
                 departmentDropdown.getSelectedIndex() + 1));

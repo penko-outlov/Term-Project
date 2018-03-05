@@ -7,7 +7,10 @@ import database.queries.employee.SelectEmployeesFromDepartmentQuery;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public abstract class QueryPanel extends JPanel implements ActionListener {
@@ -61,6 +64,16 @@ public abstract class QueryPanel extends JPanel implements ActionListener {
         JLabel newLabel = new JLabel(labelText);
         this.add(newLabel);
         return newLabel;
+    }
+
+    protected JFormattedTextField addDateField(String label) {
+        this.add(new JLabel(label));
+
+        DateFormat format = new SimpleDateFormat("dd-MMMM-yyyy");
+        JFormattedTextField dateTextField = new JFormattedTextField(format);
+        dateTextField.setValue(new Date());
+        this.add(dateTextField);
+        return dateTextField;
     }
 
     protected void addExecuteButton() {

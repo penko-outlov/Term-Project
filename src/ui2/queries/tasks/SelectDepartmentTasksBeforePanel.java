@@ -23,19 +23,10 @@ public class SelectDepartmentTasksBeforePanel extends QueryPanel implements Acti
         super(targetTable);
 
         departmentNameField = addTextField("Department");
-        addDateField();
+        dateTextField = addDateField("Date");
         addExecuteButton();
 
         makeCompactGrid(3);
-    }
-
-    private void addDateField() {
-        this.add(new JLabel("Date"));
-
-        DateFormat format = new SimpleDateFormat("dd-MMMM-yyyy");
-        dateTextField = new JFormattedTextField(format);
-        dateTextField.setValue(new Date());
-        this.add(dateTextField);
     }
 
     @Override
