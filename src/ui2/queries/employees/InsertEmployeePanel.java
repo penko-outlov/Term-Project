@@ -29,29 +29,14 @@ public class InsertEmployeePanel extends QueryPanel {
         lastNameField = addTextField("Last Name");
         egnField = addTextField("EGN");
         emailField = addTextField("Email");
-        addDepartmentDropdown();
+        departmentDropdown = addDropdownFromTable("Department", DatabaseConnector.getDepartmentModel(), 2);
+
         addExecuteButton("Insert");
 
         messageLabel = addLabel("");
         messageLabel.setForeground(Color.red);
 
         makeCompactGrid(7);
-    }
-
-    private void addDepartmentDropdown() {
-        JLabel label = new JLabel("Department");
-        this.add(label);
-
-        TableModel departmentTable = DatabaseConnector.getDepartmentModel();
-        List<String> statusTypes = new ArrayList<>();
-        for(int i = 0; i < departmentTable.getRowCount(); i++) {
-            statusTypes.add((String) departmentTable.getValueAt(i, 2));
-        }
-
-        departmentDropdown = new JComboBox(statusTypes.toArray());
-        departmentDropdown.setSelectedIndex(0);
-
-        this.add(departmentDropdown);
     }
 
     @Override

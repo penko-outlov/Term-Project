@@ -1,14 +1,16 @@
 package ui2.queries;
 
 import database.DatabaseConnector;
+import database.TableModel;
 import database.queries.employee.SelectEmployeesFromDepartmentQuery;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class QueryPanel extends JPanel implements ActionListener {
-
 
     protected JTable targetTable;
 
@@ -23,6 +25,26 @@ public abstract class QueryPanel extends JPanel implements ActionListener {
                 numRows, 2, //rows, cols
                 6, 6,        //initX, initY
                 6, 6);       //xPad, yPad
+    }
+
+    protected JComboBox addDropdownFromTable(String labelText, TableModel table, int... previewColumnIndexes) {
+        JLabel label = new JLabel(labelText);
+        this.add(label);
+
+        List<String> statusTypes = new ArrayList<>();
+        for(int i = 0; i < table.getRowCount(); i++) {
+            String previewText = "";
+            for(int j = 0; j < previewColumnIndexes.length; j++) {
+                previewText +=  table.getValueAt(i, previewColumnIndexes[j]) + " ";
+            }
+            statusTypes.add((String) previewText);
+        }
+
+        JComboBox dropdown = new JComboBox(statusTypes.toArray());
+        dropdown.setSelectedIndex(0);
+
+        this.add(dropdown);
+        return dropdown;
     }
 
     protected JTextField addTextField(String labelText) {
