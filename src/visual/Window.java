@@ -28,7 +28,6 @@ public class Window extends JFrame {
         setLayout(new BorderLayout());
         setLocationRelativeTo(null);
         setVisible(true);
-        setResizable(false);
 
         makeDataPanel();
         makeNavigationPanel();
