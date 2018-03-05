@@ -1,10 +1,7 @@
 package database;
 
-import org.h2.table.Table;
-
 import javax.swing.table.AbstractTableModel;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 
 public class TableModel extends AbstractTableModel {
@@ -55,7 +52,7 @@ public class TableModel extends AbstractTableModel {
 
 
     public String getTableName() {
-        return  tableName;
+        return tableName;
     }
 
     @Override
