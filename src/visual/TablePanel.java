@@ -1,7 +1,7 @@
 package visual;
 
-import com.sun.corba.se.impl.encoding.CodeSetConversion;
-import com.sun.deploy.security.MSCryptoProvider;
+//import com.sun.corba.se.impl.encoding.CodeSetConversion;
+//import com.sun.deploy.security.MSCryptoProvider;
 import database.DatabaseConnector;
 import database.TableModel;
 import database.queries.employee.DeleteEmployeeQuery;
