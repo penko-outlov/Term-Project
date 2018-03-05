@@ -6,6 +6,7 @@ import database.queries.SelectAllQuery;
 import database.queries.departments.DeleteDepartmentQuery;
 import database.queries.departments.SelectAllDepartmentsQuery;
 import database.queries.employee.DeleteEmployeeQuery;
+import database.queries.employee.SelectAllEmployeesQuery;
 import database.queries.tasks.DeleteTaskQuery;
 import database.queries.tasks.SelectAllTasksQuery;
 
@@ -40,7 +41,7 @@ public class DatabaseConnector {
     }
 
     public static TableModel getEmployeeModel() {
-        return executeQuery(new SelectAllQuery(Employee.TABLE_NAME));
+        return executeQuery(new SelectAllEmployeesQuery());
     }
 
     public static TableModel getStatusModel() {
