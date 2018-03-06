@@ -17,6 +17,7 @@ public abstract class TablePanel extends JPanel {
 
         JPanel tablePanel = new JPanel();
         table = new JTable(model);
+        table.setFillsViewportHeight(true);
 
         JScrollPane scrollPanel = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
