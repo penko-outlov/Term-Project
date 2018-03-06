@@ -44,7 +44,7 @@ public class TableModel extends AbstractTableModel {
 
         columnNames = new String[columnCount];
         for (int i = 0; i < columnNames.length; i++) {
-            columnNames[i] = resultSet.getMetaData().getColumnName(i + 1);
+            columnNames[i] = resultSet.getMetaData().getColumnLabel(i + 1);
         }
 
         tableName = resultSet.getMetaData().getTableName(1);
