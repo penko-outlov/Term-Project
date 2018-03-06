@@ -30,7 +30,7 @@ public class InsertEmployeePanel extends EmployeeQueryPanel {
         lastNameField = addTextField("Last Name");
         egnField = addTextField("EGN");
         emailField = addTextField("Email");
-        departmentDropdown = addDropdownFromTable("Department", DatabaseConnector.getDepartmentModel(), 2);
+        departmentDropdown = addDropdownFromTable("Department", DatabaseConnector.getDepartmentModel(), 1);
 
         addExecuteButton("Insert");
 

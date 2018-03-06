@@ -28,7 +28,7 @@ public class InsertTaskPanel extends TaskQueryPanel {
         addDescriptionArea();
         departmentDropdown = addDropdownFromTable("Department", DatabaseConnector.getDepartmentModel(), 1);
         requesterDropdown = addDropdownFromTable("Requester", DatabaseConnector.getEmployeeModel(), 1, 2);
-        deadlineField = addDateField("Date");
+        deadlineField = addDateField("Deadline");
 
         addExecuteButton("Insert");
 
