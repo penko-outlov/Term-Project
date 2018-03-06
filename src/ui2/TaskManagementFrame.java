@@ -22,7 +22,15 @@ public class TaskManagementFrame extends JFrame {
         this.getContentPane().add(mainframe);
 
         this.pack();
+        center();
         this.setVisible(true);
+    }
+
+    private void center() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int xPos = (int)((screenSize.getWidth() - this.getWidth()) / 2);
+        int yPos = (int)((screenSize.getHeight() - this.getHeight()) / 2);
+        this.setLocation(xPos, yPos);
     }
 
     private void addTables() {
