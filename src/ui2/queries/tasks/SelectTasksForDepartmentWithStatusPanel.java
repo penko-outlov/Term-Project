@@ -3,15 +3,13 @@ package ui2.queries.tasks;
 import database.DatabaseConnector;
 import database.TableModel;
 import database.queries.special.SelectTasksForDepartmentWithStatus;
-import database.queries.tasks.SelectTasksForDepartment;
-import ui2.queries.QueryPanel;
+import ui2.queries.TaskQueryPanel;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectTasksForDepartmentWithStatusPanel extends QueryPanel {
+public class SelectTasksForDepartmentWithStatusPanel extends TaskQueryPanel {
 
     JTextField departmentNameField;
     JComboBox statusDropdown;

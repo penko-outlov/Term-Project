@@ -1,15 +1,18 @@
 package ui2.queries.tasks;
 
 import database.DatabaseConnector;
+import database.objects.Status;
 import database.queries.tasks.MarkTaskFinishedQuery;
+import database.queries.tasks.SelectTasksWithStatusQuery;
 import database.queries.tasks.TakeTaskQuery;
 import ui2.queries.QueryPanel;
+import ui2.queries.TaskQueryPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.text.NumberFormat;
 
-public class TakeTaskPanel extends QueryPanel {
+public class TakeTaskPanel extends TaskQueryPanel {
 
     private JFormattedTextField hourField;
     private JComboBox employeeDropdown;
@@ -28,6 +31,11 @@ public class TakeTaskPanel extends QueryPanel {
         messageField.setForeground(Color.red);
 
         makeCompactGrid(5);
+    }
+
+    @Override
+    public void onSelected() {
+        targetTable.setModel(DatabaseConnector.executeQuery(new SelectTasksWithStatusQuery(Status.OPEN)));
     }
 
     private void addHourField() {
@@ -59,6 +67,6 @@ public class TakeTaskPanel extends QueryPanel {
 
         DatabaseConnector.executeQuery(new TakeTaskQuery(taskId, employeeDropdown.getSelectedIndex() + 1, hours));
 
-        targetTable.setModel(DatabaseConnector.getTaskModel());
+        targetTable.setModel(DatabaseConnector.executeQuery(new SelectTasksWithStatusQuery(Status.OPEN)));
     }
 }

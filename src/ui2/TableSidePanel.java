@@ -16,6 +16,8 @@ public class TableSidePanel extends JPanel implements ItemListener {
 
     private JPanel cards;
 
+    private String currentQueryName;
+
     public TableSidePanel() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
@@ -41,10 +43,28 @@ public class TableSidePanel extends JPanel implements ItemListener {
 
         this.add(comboBoxPanel);
         this.add(cards);
+
+        currentQueryName = queryNames.get(0);
     }
 
     public void itemStateChanged(ItemEvent evt) {
         CardLayout cl = (CardLayout)(cards.getLayout());
+
+        String cardName = (String)evt.getItem();
+        if(currentQueryName != cardName) {
+            notifyOnSelected(cardName);
+        }
+
         cl.show(cards, (String)evt.getItem());
+        currentQueryName = cardName;
+    }
+
+    private void notifyOnSelected(String queryName) {
+        for (int i = 0; i < queryPanels.size(); i++) {
+            if (queryNames.get(i) == queryName) {
+                ((QueryPanel) queryPanels.get(i).getComponent(0)).onSelected();
+                break;
+            }
+        }
     }
 }

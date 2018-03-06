@@ -2,11 +2,12 @@ package ui2.queries.employees;
 
 import database.DatabaseConnector;
 import database.queries.employee.DeleteEmployeeQuery;
+import ui2.queries.EmployeeQueryPanel;
 import ui2.queries.QueryPanel;
 
 import javax.swing.*;
 
-public class DeleteEmployeePanel extends QueryPanel {
+public class DeleteEmployeePanel extends EmployeeQueryPanel {
 
     public DeleteEmployeePanel(JTable targetTable) {
         super(targetTable);

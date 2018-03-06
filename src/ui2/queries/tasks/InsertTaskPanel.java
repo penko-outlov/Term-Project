@@ -4,13 +4,14 @@ import database.DatabaseConnector;
 import database.queries.special.SelectDepartmentTasksBefore;
 import database.queries.tasks.InsertTaskQuery;
 import ui2.queries.QueryPanel;
+import ui2.queries.TaskQueryPanel;
 
 import javax.swing.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class InsertTaskPanel extends QueryPanel {
+public class InsertTaskPanel extends TaskQueryPanel {
 
     private JTextField nameField;
     private JTextArea descriptionArea;

@@ -4,6 +4,7 @@ import database.DatabaseConnector;
 import database.queries.employee.SelectEmployeesFromDepartmentQuery;
 import database.queries.special.SelectDepartmentTasksBefore;
 import ui2.queries.QueryPanel;
+import ui2.queries.TaskQueryPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class SelectDepartmentTasksBeforePanel extends QueryPanel implements ActionListener {
+public class SelectDepartmentTasksBeforePanel extends TaskQueryPanel implements ActionListener {
 
     private JTextField departmentNameField;
     private JFormattedTextField dateTextField;

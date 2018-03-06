@@ -4,6 +4,7 @@ import database.DatabaseConnector;
 import database.TableModel;
 import database.queries.employee.InsertEmployeeQuery;
 import org.h2.engine.Database;
+import ui2.queries.EmployeeQueryPanel;
 import ui2.queries.QueryPanel;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InsertEmployeePanel extends QueryPanel {
+public class InsertEmployeePanel extends EmployeeQueryPanel {
 
     private JTextField firstNameField;
     private JTextField lastNameField;

@@ -23,6 +23,9 @@ public abstract class QueryPanel extends JPanel implements ActionListener {
 
     }
 
+    public void onSelected() {
+    }
+
     protected void makeCompactGrid(int numRows) {
         layout.SpringUtilities.makeCompactGrid(this,
                 numRows, 2, //rows, cols

@@ -2,12 +2,13 @@ package ui2.queries.employees;
 
 import database.DatabaseConnector;
 import database.queries.employee.UpdateEmployeeQuery;
+import ui2.queries.EmployeeQueryPanel;
 import ui2.queries.QueryPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class UpdateEmployeePanel extends QueryPanel {
+public class UpdateEmployeePanel extends EmployeeQueryPanel {
 
     private JTextField firstNameField;
     private JTextField lastNameField;

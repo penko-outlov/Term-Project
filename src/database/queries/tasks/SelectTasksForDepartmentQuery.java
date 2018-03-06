@@ -5,7 +5,7 @@ import database.queries.Query;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class SelectTasksForDepartment extends Query {
+public class SelectTasksForDepartmentQuery extends Query {
 
     private String departmentName;
 
@@ -18,7 +18,7 @@ public class SelectTasksForDepartment extends Query {
             "WHERE (SELECT name FROM departments dep WHERE t.department_id = dep.department_id) = ?";
 
 
-    public SelectTasksForDepartment(String departmentName) {
+    public SelectTasksForDepartmentQuery(String departmentName) {
         this.departmentName = departmentName;
     }
 

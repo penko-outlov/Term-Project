@@ -2,12 +2,13 @@ package ui2.queries.departments;
 
 import database.DatabaseConnector;
 import database.queries.departments.InsertDepartmentQuery;
+import ui2.queries.DepartmentQueryPanel;
 import ui2.queries.QueryPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class InsertDepartmentPanel extends QueryPanel {
+public class InsertDepartmentPanel extends DepartmentQueryPanel {
 
     private JTextField departmentNameField;
     private JComboBox employeeDropdown;

@@ -2,11 +2,12 @@ package ui2.queries.employees;
 
 import database.DatabaseConnector;
 import database.queries.employee.SelectEmployeesFromDepartmentQuery;
+import ui2.queries.EmployeeQueryPanel;
 import ui2.queries.QueryPanel;
 
 import javax.swing.*;
 
-public class SelectEmployeesFromDepartmentPanel extends QueryPanel {
+public class SelectEmployeesFromDepartmentPanel extends EmployeeQueryPanel {
 
     private JComboBox departmentDropdown;
 

@@ -3,11 +3,12 @@ package ui2.queries.departments;
 import database.DatabaseConnector;
 import database.queries.departments.DeleteDepartmentQuery;
 import database.queries.tasks.DeleteTaskQuery;
+import ui2.queries.DepartmentQueryPanel;
 import ui2.queries.QueryPanel;
 
 import javax.swing.*;
 
-public class DeleteDepartmentPanel extends QueryPanel {
+public class DeleteDepartmentPanel extends DepartmentQueryPanel {
     public DeleteDepartmentPanel(JTable targetTable) {
         super(targetTable);
 

@@ -4,10 +4,11 @@ import database.DatabaseConnector;
 import database.queries.employee.DeleteEmployeeQuery;
 import database.queries.tasks.DeleteTaskQuery;
 import ui2.queries.QueryPanel;
+import ui2.queries.TaskQueryPanel;
 
 import javax.swing.*;
 
-public class DeleteTaskPanel extends QueryPanel {
+public class DeleteTaskPanel extends TaskQueryPanel {
 
     public DeleteTaskPanel(JTable targetTable) {
         super(targetTable);

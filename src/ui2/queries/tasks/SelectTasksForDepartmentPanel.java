@@ -1,18 +1,12 @@
 package ui2.queries.tasks;
 
 import database.DatabaseConnector;
-import database.queries.employee.SelectEmployeesFromDepartmentQuery;
-import database.queries.special.SelectDepartmentTasksBefore;
-import database.queries.tasks.SelectTasksForDepartment;
-import ui2.queries.QueryPanel;
+import database.queries.tasks.SelectTasksForDepartmentQuery;
+import ui2.queries.TaskQueryPanel;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 
-public class SelectTasksForDepartmentPanel extends QueryPanel {
+public class SelectTasksForDepartmentPanel extends TaskQueryPanel {
 
     private JTextField departmentNameField;
 
@@ -28,6 +22,6 @@ public class SelectTasksForDepartmentPanel extends QueryPanel {
 
     @Override
     protected void execute() {
-        targetTable.setModel(DatabaseConnector.executeQuery(new SelectTasksForDepartment(departmentNameField.getText().trim())));
+        targetTable.setModel(DatabaseConnector.executeQuery(new SelectTasksForDepartmentQuery(departmentNameField.getText().trim())));
     }
 }
